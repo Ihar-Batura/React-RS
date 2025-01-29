@@ -1,4 +1,4 @@
-.header {
+.footer {
   display: flex;
   align-items: center;
   width: 100%;
@@ -7,13 +7,20 @@
 }
 
 .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-   padding: 5px 15px;
+  padding: 5px 15px;
 }
 
-.logo {
-  text-align: center;
+.year {
   color: white;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
 }
