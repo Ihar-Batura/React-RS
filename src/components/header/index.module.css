@@ -1,0 +1,15 @@
+.header {
+  width: 100%;
+  background-color: rgb(14, 2, 25);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-align: center;
+  color: white;
+}
