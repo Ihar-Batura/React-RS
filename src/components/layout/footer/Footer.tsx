@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import type { ReactNode } from 'react';
-import styles from './index.module.css';
+import styles from './Footer.module.scss';
 
 export class Footer extends Component {
   render(): ReactNode {

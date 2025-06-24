@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import type { ReactNode } from 'react';
-import styles from './index.module.css';
+import styles from './Header.module.scss';
 
 export class Header extends Component {
   render(): ReactNode {
