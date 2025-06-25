@@ -7,7 +7,7 @@ export class Header extends Component {
     return (
       <header className={styles.header}>
         <div className={styles.wrapper}>
-          <h1 className={styles.logo}>Star Wars</h1>
+          <h1 className={styles.logo}>Star Trek</h1>
         </div>
       </header>
     );
