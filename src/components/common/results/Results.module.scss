@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 40px 20px;
+  background-color: bisque;
+}
+
+.characterList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
