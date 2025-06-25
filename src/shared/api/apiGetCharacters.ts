@@ -22,11 +22,11 @@ export async function apiGetCharacters(
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: CharactersResponse = await response.json();
 
     return data;
-  } catch (error) {
-    console.error('Error character collection:', error);
+  } catch (error: unknown) {
+    console.error('Error getting character collection:', error);
     throw error;
   }
 }
