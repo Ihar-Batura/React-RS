@@ -1,0 +1,30 @@
+@use '../../../assets/styles/globals' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  height: 100dvh;
+  background-color: $background-dark-light;
+}
+
+.title {
+  font-size: 25px;
+  color: $primary-yellow;
+}
+
+.description {
+  font-size: 20px;
+  color: $primary-red;
+}
+
+.button {
+  @include button(
+    $width: 200px,
+    
+    
+  )
+}
