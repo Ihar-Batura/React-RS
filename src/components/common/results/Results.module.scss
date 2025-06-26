@@ -1,13 +1,35 @@
+@use '../../../assets/styles/globals' as *;
+
 .container {
   width: 100%;
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 40px 20px;
-  background-color: bisque;
+  padding: 20px 10px;
+}
+
+.titleContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.titleName {
+  width: 40%;
+  font-size: 20px;
+  color: $primary-light-blue;
+}
+
+.titleDescription {
+  width: 60%;
+  font-size: 20px;
+  color: $primary-light-blue;
 }
 
 .characterList {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.message{
+  font-size: 20px;
+  text-align: center;
+  color: $primary-yellow;
 }

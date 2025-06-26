@@ -1,14 +1,20 @@
+@use '../../../assets/styles/globals' as *;
+
 .container{
   display: flex;
-  border: 1px solid black;
+  padding: 2px 0;
+  border-radius: 6px;
+  background-color: $background-dark;
 }
 
 .name{
   width:  40%;
+  color: $primary-light-blue;
 }
 
 .description {
   width: 60%;
   font-size: 14px;
+  color: $primary-light-blue;
 }
 
