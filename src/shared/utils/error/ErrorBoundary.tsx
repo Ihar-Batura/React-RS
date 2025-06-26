@@ -30,8 +30,8 @@ export class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <div className={styles.container}>
-          <h2 className={styles.title}>Something went wrong.</h2>
-          <p className={styles.description}>Don&apos;t worry!!!</p>
+          <h2 className={styles.title}>Something went wrong...</h2>
+          <p className={styles.description}>Don&apos;t worry!</p>
           <button
             className={styles.button}
             onClick={() => this.setState({ hasError: false })}
