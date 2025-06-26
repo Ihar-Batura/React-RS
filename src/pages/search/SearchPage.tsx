@@ -1,13 +1,13 @@
 import { Component } from 'react';
 import type { ReactNode } from 'react';
-import styles from './Main.module.scss';
-import { Search } from '../../common/search/Search';
-import { Results } from '../../common/results/Results';
-import { apiGetCharacters } from '../../../shared/api/apiGetCharacters';
-import { LocalStorageService } from '../../../shared/ls/localStorageService';
-import { CharactersResponse } from '../../../shared/types/types';
+import styles from './SearchPage.module.scss';
+import { Search } from '../../components/common/search/Search';
+import { Results } from '../../components/common/results/Results';
+import { apiGetCharacters } from '../../shared/api/apiGetCharacters';
+import { LocalStorageService } from '../../shared/ls/localStorageService';
+import { CharactersResponse } from '../../shared/types/types';
 
-interface MainState {
+interface SearchPageState {
   searchTerm: string;
   searchResults: CharactersResponse | null;
   searchError: boolean;
@@ -15,10 +15,10 @@ interface MainState {
   hasTestError: boolean;
 }
 
-export class Main extends Component {
+export class SearchPage extends Component {
   storageService = new LocalStorageService();
 
-  state: MainState = {
+  state: SearchPageState = {
     searchTerm: '',
     searchResults: null,
     searchError: false,
@@ -26,23 +26,10 @@ export class Main extends Component {
     hasTestError: false,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const lastTerm = this.storageService.getLastSearchTerm();
-    if (lastTerm) {
-      this.setState({ isLoading: true });
-      try {
-        const results = await apiGetCharacters(lastTerm.trim());
-        this.setState({
-          searchTerm: lastTerm,
-          searchResults: results,
-        });
-      } catch (error) {
-        console.error('Failed to fetch characters on mount:', error);
-        this.setState({ searchError: true });
-      } finally {
-        this.setState({ isLoading: false });
-      }
-    }
+    const term = lastTerm?.trim() ?? '';
+    this.handleSearch(term);
   }
 
   handleSearch = async (term: string) => {
@@ -72,7 +59,7 @@ export class Main extends Component {
       throw new Error("Don't worry this a test error");
     }
     return (
-      <main className={styles.main}>
+      <main className={styles.container}>
         <div className={styles.wrapper}>
           <Search onSearch={this.handleSearch} />
           <Results
@@ -80,7 +67,9 @@ export class Main extends Component {
             isError={this.state.searchError}
             isLoading={this.state.isLoading}
           />
-          <button onClick={this.throwTestError}>Error Button</button>
+          <button className={styles.button} onClick={this.throwTestError}>
+            Error Button
+          </button>
         </div>
       </main>
     );
