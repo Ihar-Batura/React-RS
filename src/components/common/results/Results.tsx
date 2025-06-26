@@ -21,21 +21,25 @@ export class Results extends Component<ResultsProps> {
     if (isError) {
       return (
         <div className={styles.container}>
-          <p className={styles.error}>
+          <p className={styles.message}>
             Ooops! Error getting characters collection...
           </p>
         </div>
       );
     }
-    if (!data || data.characters.length === 0) {
+    if (!data?.characters.length) {
       return (
         <div className={styles.container}>
-          <p>Nothing found!</p>
+          <p className={styles.message}>Nothing found!</p>
         </div>
       );
     }
     return (
       <div className={styles.container}>
+        <div className={styles.titleContainer}>
+          <div className={styles.titleName}>Character:</div>
+          <div className={styles.titleDescription}>Description:</div>
+        </div>
         <ul className={styles.characterList}>
           {data.characters.map((character) => (
             <ResultItem key={character.uid} itemData={character} />
