@@ -44,7 +44,7 @@ export class Search extends Component<SearchProps> {
           className={styles.input}
           value={this.state.term}
           onChange={this.handleTermChange}
-        ></input>
+        />
         <button className={styles.button} onClick={this.handleClickSearch}>
           Search
         </button>

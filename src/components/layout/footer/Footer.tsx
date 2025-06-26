@@ -12,7 +12,7 @@ export class Footer extends Component {
             className={styles.link}
             href="https://github.com/Ihar-Batura"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
           >
             Ihar Batura
           </a>

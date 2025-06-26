@@ -1,14 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import './index.scss';
 import { App } from './App.tsx';
-import { ErrorBoundary } from './shared/utils/error/ErrorBoundary.tsx';
+import { StrictMode } from 'react';
 
 const root: HTMLElement | null = document.getElementById('root');
 
 if (root) {
   createRoot(root).render(
-    <ErrorBoundary>
+    <StrictMode>
       <App />
-    </ErrorBoundary>
+    </StrictMode>
   );
 }
