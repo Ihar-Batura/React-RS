@@ -15,10 +15,9 @@ export class ResultItem extends Component<ResultItemProps> {
     let textDescription = '';
 
     for (let i = 0; i < arrItemData.length; i += 1) {
-      if (arrItemData[i][0] === 'uid') {
-        i += 2;
-      }
-      if (arrItemData[i][1]) {
+      if (arrItemData[i][0] === 'name' || arrItemData[i][0] === 'uid') {
+        i += 1;
+      } else if (arrItemData[i][1]) {
         textDescription += `${arrItemData[i][0]}: ${arrItemData[i][1]}, `;
       }
     }
