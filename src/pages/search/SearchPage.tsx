@@ -3,9 +3,10 @@ import type { ReactNode } from 'react';
 import styles from './SearchPage.module.scss';
 import { Search } from '../../components/common/search/Search';
 import { Results } from '../../components/common/results/Results';
-import { apiGetCharacters } from '../../shared/api/apiGetCharacters';
+import { apiSearchCharacters } from '../../shared/api/apiGetCharacters';
 import { LocalStorageService } from '../../shared/ls/localStorageService';
 import { CharactersResponse } from '../../shared/types/types';
+import { apiGetAllCharacters } from '../../shared/api/apiGetAllCharacters';
 
 interface SearchPageState {
   searchTerm: string;
@@ -35,7 +36,9 @@ export class SearchPage extends Component {
   handleSearch = async (term: string) => {
     this.setState({ isLoading: true });
     try {
-      const results = await apiGetCharacters(term.trim());
+      const results = term
+        ? await apiSearchCharacters(term.trim())
+        : await apiGetAllCharacters();
       this.setState({
         searchResults: results,
         searchTerm: term,

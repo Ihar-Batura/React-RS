@@ -1,6 +1,6 @@
 import { CharactersResponse } from '../types/types';
 
-export async function apiGetCharacters(
+export async function apiSearchCharacters(
   term: string
 ): Promise<CharactersResponse> {
   const BASE_URL = 'https://stapi.co/api';
