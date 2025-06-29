@@ -8,13 +8,11 @@ import { Footer } from './components/layout/footer/Footer';
 export class App extends Component {
   render(): ReactNode {
     return (
-      <>
-        <ErrorBoundary>
-          <Header />
-          <SearchPage />
-          <Footer />
-        </ErrorBoundary>
-      </>
+      <ErrorBoundary>
+        <Header />
+        <SearchPage />
+        <Footer />
+      </ErrorBoundary>
     );
   }
 }

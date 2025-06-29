@@ -6,7 +6,7 @@ export class Spinner extends Component {
   render(): ReactNode {
     return (
       <div className={styles.container}>
-        <div className={styles.spinner}></div>
+        <span className={styles.spinner} />
       </div>
     );
   }
