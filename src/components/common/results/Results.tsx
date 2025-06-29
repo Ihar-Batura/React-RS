@@ -18,33 +18,28 @@ export class Results extends Component<ResultsProps> {
     if (isLoading) {
       return <Spinner />;
     }
-    if (isError) {
-      return (
-        <div className={styles.container}>
-          <p className={styles.message}>
-            Ooops! Error getting characters collection...
-          </p>
-        </div>
-      );
-    }
-    if (!data?.characters.length) {
-      return (
-        <div className={styles.container}>
-          <p className={styles.message}>Nothing found!</p>
-        </div>
-      );
-    }
+
     return (
       <div className={styles.container}>
-        <div className={styles.titleContainer}>
-          <div className={styles.titleName}>Character:</div>
-          <div className={styles.titleDescription}>Description:</div>
-        </div>
-        <ul className={styles.characterList}>
-          {data.characters.map((character) => (
-            <ResultItem key={character.uid} itemData={character} />
-          ))}
-        </ul>
+        {data?.characters.length ? (
+          <>
+            <div className={styles.titleContainer}>
+              <div className={styles.titleName}>Character:</div>
+              <div className={styles.titleDescription}>Description:</div>
+            </div>
+            <ul className={styles.characterList}>
+              {data.characters.map((character) => (
+                <ResultItem key={character.uid} itemData={character} />
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className={styles.message}>
+            {isError
+              ? 'Ooops! Error getting characters collection...'
+              : 'Nothing found!'}
+          </p>
+        )}
       </div>
     );
   }
