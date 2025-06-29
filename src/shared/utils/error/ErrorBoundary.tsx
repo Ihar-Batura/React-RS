@@ -27,21 +27,19 @@ export class ErrorBoundary extends React.Component<
   }
 
   render() {
-    if (this.state.hasError) {
-      return (
-        <div className={styles.container}>
-          <h2 className={styles.title}>Something went wrong...</h2>
-          <p className={styles.description}>Don&apos;t worry!</p>
-          <button
-            className={styles.button}
-            onClick={() => this.setState({ hasError: false })}
-          >
-            Try again
-          </button>
-        </div>
-      );
-    }
-
-    return this.props.children;
+    return !this.state.hasError ? (
+      this.props.children
+    ) : (
+      <div className={styles.container}>
+        <h2 className={styles.title}>Something went wrong...</h2>
+        <p className={styles.description}>Don&apos;t worry!</p>
+        <button
+          className={styles.button}
+          onClick={() => this.setState({ hasError: false })}
+        >
+          Try again
+        </button>
+      </div>
+    );
   }
 }
