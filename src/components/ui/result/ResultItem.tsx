@@ -14,13 +14,15 @@ export class ResultItem extends Component<ResultItemProps> {
     );
     let textDescription = '';
 
-    for (let i = 0; i < arrItemData.length; i += 1) {
-      if (arrItemData[i][0] === 'name' || arrItemData[i][0] === 'uid') {
-        i += 1;
-      } else if (arrItemData[i][1]) {
-        textDescription += `${arrItemData[i][0]}: ${arrItemData[i][1]}, `;
+    arrItemData.forEach((el) => {
+      if (el[0] !== 'name' && el[0] !== 'uid') {
+        if (el[1] === null || el[1] === undefined) {
+          textDescription += `${el[0]}: 'N/A', `;
+        } else {
+          textDescription += `${el[0]}: ${el[1]}, `;
+        }
       }
-    }
+    });
 
     return (
       <li className={styles.container}>
