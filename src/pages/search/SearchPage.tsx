@@ -3,10 +3,9 @@ import type { ReactNode } from 'react';
 import styles from './SearchPage.module.scss';
 import { Search } from '../../components/common/search/Search';
 import { Results } from '../../components/common/results/Results';
-import { apiSearchCharacters } from '../../shared/api/apiGetCharacters';
-import { LocalStorageService } from '../../shared/ls/localStorageService';
+import { apiSearchCharacters } from '../../shared/api/apiSearchCharacters';
 import { CharactersResponse } from '../../shared/types/types';
-import { apiGetAllCharacters } from '../../shared/api/apiGetAllCharacters';
+import getLastSearchTermFromLS from '../../shared/ls/getLastSearchTermFormLS';
 
 interface SearchPageState {
   searchTerm: string;
@@ -17,8 +16,6 @@ interface SearchPageState {
 }
 
 export class SearchPage extends Component {
-  storageService = new LocalStorageService();
-
   state: SearchPageState = {
     searchTerm: '',
     searchResults: null,
@@ -28,7 +25,7 @@ export class SearchPage extends Component {
   };
 
   componentDidMount() {
-    const lastTerm = this.storageService.getLastSearchTerm();
+    const lastTerm = getLastSearchTermFromLS();
     const term = lastTerm?.trim() ?? '';
     this.handleSearch(term);
   }
@@ -36,9 +33,8 @@ export class SearchPage extends Component {
   handleSearch = async (term: string) => {
     this.setState({ isLoading: true });
     try {
-      const results = term
-        ? await apiSearchCharacters(term.trim())
-        : await apiGetAllCharacters();
+      const results = await apiSearchCharacters(term.trim());
+
       this.setState({
         searchResults: results,
         searchTerm: term,

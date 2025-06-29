@@ -4,18 +4,15 @@ export async function apiSearchCharacters(
   term: string
 ): Promise<CharactersResponse> {
   const BASE_URL = 'https://stapi.co/api';
-  const url = `${BASE_URL}/v1/rest/character/search`;
+  const url = `${BASE_URL}/v1/rest/character/search?pageNumber=0&pageSize=100`;
 
   try {
-    const body = new URLSearchParams();
-    body.append('name', term);
-
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: body.toString(),
+      body: `name=${term}`,
     });
 
     if (!response.ok) {

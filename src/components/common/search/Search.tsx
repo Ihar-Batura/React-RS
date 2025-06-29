@@ -1,29 +1,18 @@
 import styles from './Search.module.scss';
 import { Component } from 'react';
 import type { ReactNode } from 'react';
-import { LocalStorageService } from '../../../shared/ls/localStorageService';
+import getLastSearchTermFromLS from '../../../shared/ls/getLastSearchTermFormLS';
+import setLastSearchTermToLS from '../../../shared/ls/setLastSearchTermToLS';
 
 interface SearchProps {
   onSearch: (term: string) => void;
 }
 
 export class Search extends Component<SearchProps> {
+  lastTerm = getLastSearchTermFromLS();
   state = {
-    term: '',
+    term: this.lastTerm ?? '',
   };
-
-  storageService = new LocalStorageService();
-
-  constructor(props: SearchProps) {
-    super(props);
-
-    const lastTerm = this.storageService.getLastSearchTerm();
-    if (lastTerm) {
-      this.state = {
-        term: lastTerm,
-      };
-    }
-  }
 
   handleTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
@@ -33,7 +22,7 @@ export class Search extends Component<SearchProps> {
 
   handleClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.storageService.setLastSearchTerm(this.state.term);
+    setLastSearchTermToLS(this.state.term);
     this.props.onSearch(this.state.term);
   };
 
