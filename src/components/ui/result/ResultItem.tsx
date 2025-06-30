@@ -21,7 +21,12 @@ export class ResultItem extends Component<ResultItemProps> {
     );
 
     return (
-      <li className={styles.container}>
+      <li
+        className={styles.container}
+        onClick={() => {
+          console.log(this.props.itemData.uid);
+        }}
+      >
         <p className={styles.name}>{this.props.itemData.name}</p>
         <p className={styles.description}>{descriptions}</p>
       </li>
