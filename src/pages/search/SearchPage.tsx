@@ -26,7 +26,7 @@ export class SearchPage extends Component {
 
   componentDidMount(): void {
     const lastTerm = getLastSearchTermFromLS();
-    const term = lastTerm?.trim() ?? '';
+    const term = lastTerm ?? '';
     this.handleSearch(term);
   }
 
