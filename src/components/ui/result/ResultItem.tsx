@@ -9,25 +9,21 @@ interface ResultItemProps {
 
 export class ResultItem extends Component<ResultItemProps> {
   render(): ReactNode {
-    const arrItemData: [string, number | string | null][] = Object.entries(
-      this.props.itemData
+    const descriptions = Object.entries(this.props.itemData).reduce(
+      (acc, curr: [string, number | string | null | undefined]) => {
+        if (curr[0] === 'name' || curr[0] === 'uid') return acc;
+        return (
+          acc +
+          `${curr[0]}: ${curr[1] === undefined || curr[1] === null ? 'N/A' : curr[1]}, `
+        );
+      },
+      ''
     );
-    let textDescription = '';
-
-    arrItemData.forEach((el) => {
-      if (el[0] !== 'name' && el[0] !== 'uid') {
-        if (el[1] === null || el[1] === undefined) {
-          textDescription += `${el[0]}: 'N/A', `;
-        } else {
-          textDescription += `${el[0]}: ${el[1]}, `;
-        }
-      }
-    });
 
     return (
       <li className={styles.container}>
         <p className={styles.name}>{this.props.itemData.name}</p>
-        <p className={styles.description}>{textDescription}</p>
+        <p className={styles.description}>{descriptions}</p>
       </li>
     );
   }
