@@ -24,13 +24,13 @@ export class SearchPage extends Component {
     hasTestError: false,
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     const lastTerm = getLastSearchTermFromLS();
     const term = lastTerm?.trim() ?? '';
     this.handleSearch(term);
   }
 
-  handleSearch = async (term: string) => {
+  handleSearch = async (term: string): Promise<void> => {
     this.setState({ isLoading: true });
     try {
       const results = await apiSearchCharacters(term.trim());
@@ -47,7 +47,7 @@ export class SearchPage extends Component {
     }
   };
 
-  throwTestError = () => {
+  throwTestError = (): void => {
     this.setState({
       hasTestError: true,
     });

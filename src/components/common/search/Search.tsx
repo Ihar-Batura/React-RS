@@ -14,13 +14,13 @@ export class Search extends Component<SearchProps> {
     term: this.lastTerm ?? '',
   };
 
-  handleTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleTermChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({
       term: e.target.value,
     });
   };
 
-  handleClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  handleClickSearch = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     setLastSearchTermToLS(this.state.term);
     this.props.onSearch(this.state.term);
