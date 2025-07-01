@@ -1,0 +1,43 @@
+$background-dark: #1d1837;
+$background-dark-light: #0e072eeb;
+$primary-white: #ffffff;
+$primary-blue: #90b1de;
+$primary-yellow: #ffac00;
+$border-blue: #005bd8;
+$primary-red: #e52840;
+$primary-light-blue: #05b2d9;
+$font-family: "Lexend", sans-serif;
+
+@mixin button(
+  $width: auto,
+  $font-size: 14px,
+  $padding: 12px 18px,
+  $border: none,
+  $border-radius: 6px,
+  $color: $background-dark,
+  $background-color: $primary-yellow,
+  $cursor: pointer
+) {
+  width: $width;
+  font-size: $font-size;
+  padding: $padding;
+  border: $border;
+  border-radius: $border-radius;
+  color: $color;
+  background-color: $background-color;
+  cursor: $cursor;
+}
+
+
+$typography-button: 15px;
+$border-radius: 5px;
+$benefits-border: 3px solid plum;
+$line-height: 120%;
+$base-weight: 400;
+$content-width: 1440px;
+
+:root {
+  padding: 0;
+  font-family: $font-family;
+  font-weight: $base-weight;
+}
