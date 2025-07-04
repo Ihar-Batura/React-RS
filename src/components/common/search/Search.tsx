@@ -1,6 +1,5 @@
 import styles from './Search.module.scss';
-import { useState } from 'react';
-import getLastSearchTermFromLS from '../../../shared/ls/getLastSearchTermFormLS';
+import { useLocalStorageSearchTerm } from '../../../shared/hooks/useLocalStorageSearchTerm';
 import setLastSearchTermToLS from '../../../shared/ls/setLastSearchTermToLS';
 
 interface SearchProps {
@@ -8,7 +7,7 @@ interface SearchProps {
 }
 
 export const Search = ({ onSearch }: SearchProps) => {
-  const [term, setTerm] = useState<string>(getLastSearchTermFromLS() || '');
+  const [term, setTerm] = useLocalStorageSearchTerm();
 
   const handleTermChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTerm(e.target.value);

@@ -4,12 +4,10 @@ import { Search } from '../../components/common/search/Search';
 import { Results } from '../../components/common/results/Results';
 import apiSearchCharacters from '../../shared/api/apiSearchCharacters';
 import { CharactersResponse } from '../../shared/types/types';
-import getLastSearchTermFromLS from '../../shared/ls/getLastSearchTermFormLS';
+import { useLocalStorageSearchTerm } from '../../shared/hooks/useLocalStorageSearchTerm';
 
 export const SearchPage = () => {
-  const [searchTerm, setSearchTerm] = useState<string>(
-    getLastSearchTermFromLS() || ''
-  );
+  const [searchTerm, setSearchTerm] = useLocalStorageSearchTerm();
   const [searchResults, setSearchResults] = useState<CharactersResponse | null>(
     null
   );
