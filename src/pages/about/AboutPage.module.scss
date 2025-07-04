@@ -1,0 +1,50 @@
+@use '../../assets/styles/globals' as *;
+
+.container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100dvh - 110px);
+  padding: 40px 10px;
+  background-color: $background-dark-light;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px 10px;
+}
+
+.titleContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  font-size: 18px;
+  text-align: center;
+  color: $primary-white;
+}
+
+.link{
+  color: $primary-blue;
+}
+
+
+.button {
+  @include button(
+    $width: 200px,
+  )
+}
+
+@media (width < 500px) {
+  .title {
+    font-size: 16px;
+  }
+}
