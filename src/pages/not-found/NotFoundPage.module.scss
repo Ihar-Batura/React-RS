@@ -1,0 +1,59 @@
+@use '../../assets/styles/globals' as *;
+
+.container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100dvh - 110px);
+  padding: 40px 10px;
+  background-color: $background-dark-light;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px 10px;
+}
+
+.number {
+  font-size: 40px;
+  color: $primary-red;
+}
+
+.title {
+  font-size: 35px;
+  text-align: center;
+  color: $primary-white;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  @include button(
+    $width: 150px,
+  )
+}
+
+@media (width < 500px) {
+  .number {
+    font-size: 32px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .button {
+    @include button(
+      $width: 120px,
+    )
+  }
+}
