@@ -1,10 +1,11 @@
 import { CharactersResponse } from '../types/types';
 
-export async function apiSearchCharacters(
-  term: string
+export default async function apiSearchCharacters(
+  term: string,
+  page: number
 ): Promise<CharactersResponse> {
   const BASE_URL = 'https://stapi.co/api';
-  const url = `${BASE_URL}/v1/rest/character/search?pageNumber=0&pageSize=100`;
+  const url = `${BASE_URL}/v1/rest/character/search?pageNumber=${page}&pageSize=20`;
 
   try {
     const response = await fetch(url, {
