@@ -22,12 +22,3 @@
   
 
 }
-
-.button {
-  @include button(
-    $width: 200px,
-    $color: $primary-white,
-    $background-color: $primary-red,
-    
-  )
-}
