@@ -1,5 +1,9 @@
 import { Character } from '../types/types';
 
+interface CharacterResponse {
+  character: Character;
+}
+
 export default async function apiGetCharacterData(
   uid: string
 ): Promise<Character> {
@@ -18,9 +22,9 @@ export default async function apiGetCharacterData(
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    const data: Character = await response.json();
+    const data: CharacterResponse = await response.json();
 
-    return data;
+    return data.character;
   } catch (error: unknown) {
     console.error('Error getting character data:', error);
     throw error;
