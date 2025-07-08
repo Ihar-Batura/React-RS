@@ -3,9 +3,10 @@ import { Character } from '../../../shared/types/types';
 
 interface ResultItemProps {
   itemData: Character;
+  onSelect: () => void;
 }
 
-export const ResultItem = ({ itemData }: ResultItemProps) => {
+export const ResultItem = ({ itemData, onSelect }: ResultItemProps) => {
   const descriptions = Object.entries(itemData).reduce(
     (acc, curr: [string, number | string | null | undefined]) => {
       if (curr[0] === 'name' || curr[0] === 'uid') return acc;
@@ -18,12 +19,7 @@ export const ResultItem = ({ itemData }: ResultItemProps) => {
   );
 
   return (
-    <li
-      className={styles.container}
-      onClick={() => {
-        console.log(itemData.uid);
-      }}
-    >
+    <li className={styles.container} onClick={onSelect}>
       <p className={styles.name}>{itemData.name}</p>
       <p className={styles.description}>{descriptions}</p>
     </li>
