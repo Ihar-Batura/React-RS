@@ -7,9 +7,15 @@ interface ResultsProps {
   data: CharactersResponse | null;
   isError: boolean;
   isLoading: boolean;
+  onSelectCharacter: (uid: string) => void;
 }
 
-export const Results = ({ data, isError, isLoading }: ResultsProps) => {
+export const Results = ({
+  data,
+  isError,
+  isLoading,
+  onSelectCharacter,
+}: ResultsProps) => {
   if (isLoading) {
     return <Spinner />;
   }
@@ -24,7 +30,11 @@ export const Results = ({ data, isError, isLoading }: ResultsProps) => {
           </div>
           <ul className={styles.characterList}>
             {data.characters.map((character) => (
-              <ResultItem key={character.uid} itemData={character} />
+              <ResultItem
+                key={character.uid}
+                itemData={character}
+                onSelect={() => onSelectCharacter(character.uid)}
+              />
             ))}
           </ul>
         </>
