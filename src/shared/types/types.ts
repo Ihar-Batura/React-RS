@@ -48,6 +48,37 @@ interface Episodes {
   finalScriptDate: number | null;
 }
 
+interface Movies {
+  uid: string;
+  title: string;
+  mainDirector: {
+    uid: string;
+    name: string;
+  };
+  titleBulgarian: string;
+  titleCatalan: null;
+  titleChineseTraditional: string;
+  titleGerman: string;
+  titleItalian: string;
+  titleJapanese: string;
+  titlePolish: string;
+  titleRussian: string;
+  titleSerbian: string;
+  titleSpanish: string;
+  stardateFrom: number;
+  stardateTo: number;
+  yearFrom: number;
+  yearTo: number;
+  usReleaseDate: string;
+}
+
+interface CharacterSpecies {
+  uid: string;
+  name: string;
+  numerator: number;
+  denominator: number;
+}
+
 interface CharacterRelations {
   type: string;
   source: {
@@ -66,6 +97,23 @@ interface Occupations {
   legalOccupation: boolean;
   medicalOccupation: boolean;
   scientificOccupation: boolean;
+}
+
+interface Organizations {
+  uid: string;
+  name: string;
+  government: boolean;
+  intergovernmentalOrganization: boolean;
+  researchOrganization: boolean;
+  sportOrganization: boolean;
+  medicalOrganization: boolean;
+  militaryOrganization: boolean;
+  militaryUnit: boolean;
+  governmentAgency: boolean;
+  lawEnforcementAgency: boolean;
+  prisonOrPenalColony: boolean;
+  mirror: boolean;
+  alternateReality: boolean;
 }
 
 export interface Character {
@@ -95,12 +143,12 @@ export interface Character {
   alternateReality: boolean;
   performers: Performers[];
   episodes: Episodes[];
-  movies: [[]];
-  characterSpecies: [[]];
+  movies: Movies[];
+  characterSpecies: CharacterSpecies[];
   characterRelations: CharacterRelations[];
   titles: [[]];
   occupations: Occupations[];
-  organizations: [[]];
+  organizations: Organizations[];
 }
 
 export interface CharactersResponse {
