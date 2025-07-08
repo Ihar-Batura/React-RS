@@ -26,7 +26,7 @@ export const AboutPage = () => {
               className={styles.link}
               href="https://rs.school/courses/reactjs"
               target="_blank"
-              rel="noreferrer"
+              rel="noreferrer noopener"
             >
               link.
             </a>

@@ -14,9 +14,9 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
     );
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} role="container">
       <h2 className={styles.title}>Character Information:</h2>
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Performers:</h3>
         {character.performers?.length ? (
           <ul className={styles.description}>
@@ -31,7 +31,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         )}
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Episodes:</h3>
         {character.episodes?.length ? (
           <ul className={styles.description}>
@@ -49,7 +49,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         )}
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Movies:</h3>
         {character.movies?.length ? (
           <ul className={styles.description}>
@@ -77,7 +77,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         )}
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Occupations:</h3>
         {character.occupations?.length ? (
           <ul className={styles.description}>
@@ -90,7 +90,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         )}
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Species:</h3>
         {character.characterSpecies?.length ? (
           <ul className={styles.description}>
@@ -110,7 +110,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         )}
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Organizations:</h3>
         {character.organizations?.length ? (
           <ul className={styles.description}>

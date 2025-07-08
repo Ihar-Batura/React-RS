@@ -146,7 +146,7 @@ export interface Character {
   movies: Movies[];
   characterSpecies: CharacterSpecies[];
   characterRelations: CharacterRelations[];
-  titles: [[]];
+  titles: [];
   occupations: Occupations[];
   organizations: Organizations[];
 }
