@@ -1,3 +1,73 @@
+interface Performers {
+  uid: string;
+  name: string;
+  birthName: string | null;
+  gender: string;
+  dateOfBirth: number | null;
+  placeOfBirth: string | null;
+  dateOfDeath: number | null;
+  placeOfDeath: string | null;
+  animalPerformer: boolean;
+  disPerformer: boolean;
+  ds9Performer: boolean;
+  entPerformer: boolean;
+  filmPerformer: boolean;
+  standInPerformer: boolean;
+  stuntPerformer: boolean;
+  tasPerformer: boolean;
+  tngPerformer: boolean;
+  tosPerformer: boolean;
+  videoGamePerformer: boolean;
+  voicePerformer: boolean;
+  voyPerformer: boolean;
+}
+
+interface Episodes {
+  uid: string;
+  title: string;
+  titleGerman: string;
+  titleItalian: null;
+  titleJapanese: null;
+  series: {
+    uid: string;
+    title: string;
+  };
+  season: {
+    uid: string;
+    title: string;
+  };
+  seasonNumber: number;
+  episodeNumber: number;
+  productionSerialNumber: string;
+  featureLength: boolean;
+  stardateFrom: number | null;
+  stardateTo: number | null;
+  yearFrom: number;
+  yearTo: number;
+  usAirDate: string;
+  finalScriptDate: number | null;
+}
+
+interface CharacterRelations {
+  type: string;
+  source: {
+    uid: string;
+    name: string;
+  };
+  target: {
+    uid: string;
+    name: string;
+  };
+}
+
+interface Occupations {
+  uid: string;
+  name: string;
+  legalOccupation: boolean;
+  medicalOccupation: boolean;
+  scientificOccupation: boolean;
+}
+
 export interface Character {
   uid: string;
   name: string;
@@ -19,17 +89,17 @@ export interface Character {
   hologramActivationDate: string | null;
   hologramStatus: string | null;
   hologramDateStatus: string | null;
-  hologram: true;
-  fictionalCharacter: true;
-  mirror: true;
-  alternateReality: true;
-  performers: [[]];
-  episodes: [[]];
+  hologram: boolean;
+  fictionalCharacter: boolean;
+  mirror: boolean;
+  alternateReality: boolean;
+  performers: Performers[];
+  episodes: Episodes[];
   movies: [[]];
   characterSpecies: [[]];
-  characterRelations: [[]];
+  characterRelations: CharacterRelations[];
   titles: [[]];
-  occupations: [[]];
+  occupations: Occupations[];
   organizations: [[]];
 }
 
