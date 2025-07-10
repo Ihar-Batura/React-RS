@@ -1,6 +1,7 @@
 @use '../../../assets/styles/globals' as *;
 
 .container{
+  position: relative;
   display: flex;
   padding: 2px 0;
   border-radius: 6px;
@@ -20,6 +21,13 @@
   width: 60%;
   font-size: 14px;
   color: $primary-light-blue;
+}
+
+.flag{
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  cursor: pointer;
 }
 
 @media (width < 500px) {
