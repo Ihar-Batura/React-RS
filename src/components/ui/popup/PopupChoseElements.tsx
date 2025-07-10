@@ -2,6 +2,7 @@ import styles from './PopupChoseElements.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeAllItems } from '../../../store/selectedItemsSlice';
 import { RootState } from '../../../store/store';
+import { saveAs } from 'file-saver';
 
 export const PopupChoseElements = () => {
   const selectedItems = useSelector(
@@ -9,6 +10,18 @@ export const PopupChoseElements = () => {
   );
 
   const dispatch = useDispatch();
+
+  const handleDownloadCSV = () => {
+    const csvContent = selectedItems
+      .map((item) => `${item.name},"${item.description}"`)
+      .join('\n');
+
+    const blob = new Blob(['\uFEFF', csvContent], {
+      type: 'text/csv;charset=utf-8',
+    });
+
+    saveAs(blob, `${selectedItems.length}_items.csv`);
+  };
 
   return (
     <div className={styles.container}>
@@ -23,10 +36,7 @@ export const PopupChoseElements = () => {
         >
           Unselect all
         </button>
-        <button
-          className={styles.button}
-          onClick={() => console.log('Download')}
-        >
+        <button className={styles.button} onClick={handleDownloadCSV}>
           Download
         </button>
       </div>
