@@ -1,11 +1,14 @@
 import styles from './PopupChoseElements.module.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeAllItems } from '../../../store/selectedItemsSlice';
 import { RootState } from '../../../store/store';
 
 export const PopupChoseElements = () => {
   const selectedItems = useSelector(
     (state: RootState) => state.selectedItems.selectedItems
   );
+
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.container}>
@@ -16,7 +19,7 @@ export const PopupChoseElements = () => {
       <div className={styles.buttonContainer}>
         <button
           className={styles.button}
-          onClick={() => console.log('Unselect all')}
+          onClick={() => dispatch(removeAllItems())}
         >
           Unselect all
         </button>
