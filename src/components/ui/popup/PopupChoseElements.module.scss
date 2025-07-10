@@ -1,0 +1,29 @@
+@use '../../../assets/styles/globals' as *;
+
+.container {
+  margin-top: 15px;
+  margin-left: 10px;
+  width: 250px;
+  padding: 20px 10px;
+  border-radius: 6px;
+  background-color: $background-dark;
+}
+
+.title {
+  font-size: 14px;
+  text-align: center;
+  color: $primary-white;
+}
+
+.buttonContainer {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-top: 15px;
+}
+
+.button {
+  @include button(
+  $font-size: 14px,
+  $padding: 6px 9px,)
+}
