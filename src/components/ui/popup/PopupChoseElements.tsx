@@ -15,7 +15,7 @@ export const PopupChoseElements = () => {
 
   const handleDownloadCSV = () => {
     const csvContent = selectedItems
-      .map((item) => `${item.name},"${item.description}"`)
+      .map((item) => `${item.name} - "${item.description}"`)
       .join('\n');
 
     const blob = new Blob(['\uFEFF', csvContent], {
