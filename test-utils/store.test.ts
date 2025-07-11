@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { store } from '../src/store/store';
 import selectedItemsSlice from '../src/store/selectedItemsSlice';
 import type { RootState, AppDispatch } from '../src/store/store';
