@@ -1,14 +1,16 @@
 import styles from './AboutPage.module.scss';
 import { useNavigate } from 'react-router';
+import { useTheme } from '../../shared/hooks/useTheme';
 
 export const AboutPage = () => {
+  const { theme } = useTheme();
   const navigate = useNavigate();
 
   const handleGoBack = () => {
     navigate(-1);
   };
   return (
-    <main className={styles.container}>
+    <main className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.wrapper}>
         <div className={styles.titleContainer}>
           <div className={styles.title}>

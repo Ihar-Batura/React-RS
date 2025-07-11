@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeAllItems } from '../../../store/selectedItemsSlice';
 import { RootState } from '../../../store/store';
 import { saveAs } from 'file-saver';
+import { useTheme } from '../../../shared/hooks/useTheme';
 
 export const PopupChoseElements = () => {
+  const { theme } = useTheme();
   const selectedItems = useSelector(
     (state: RootState) => state.selectedItems.selectedItems
   );
@@ -24,7 +26,7 @@ export const PopupChoseElements = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.title}>
         Selected {selectedItems.length} item
         {selectedItems.length > 1 ? 's' : ''}

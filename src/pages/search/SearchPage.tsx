@@ -13,8 +13,11 @@ import { CharacterDetails } from '../../components/ui/character/CharacterDetails
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { PopupChoseElements } from '../../components/ui/popup/PopupChoseElements';
+import { useTheme } from '../../shared/hooks/useTheme';
 
 export const SearchPage = () => {
+  const { theme } = useTheme();
+
   const [searchTerm, setSearchTerm] = useLocalStorageSearchTerm();
   const [searchResults, setSearchResults] = useState<CharactersResponse | null>(
     null
@@ -106,7 +109,7 @@ export const SearchPage = () => {
   );
 
   return (
-    <main className={styles.container}>
+    <main className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.wrapper}>
         <div className={styles.searchSection}>
           <Search onSearch={handleSearch} />
@@ -124,7 +127,7 @@ export const SearchPage = () => {
                 onPageChange={handlePageChange}
               />
             )}
-          {selectedItems && selectedItems.length > 0 && <PopupChoseElements />}
+          {selectedItems.length > 0 && <PopupChoseElements />}
         </div>
         {detailsUidFromUrl && (
           <div className={styles.detailsSection}>

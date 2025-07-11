@@ -15,7 +15,7 @@ export const Navigate = () => {
   };
 
   return (
-    <nav className={styles.container}>
+    <nav className={`${styles.container} ${styles[theme]}`}>
       <ul className={styles.itemList}>
         <li className={styles.item} onClick={handleGoAbout}>
           About

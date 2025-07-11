@@ -2,6 +2,7 @@ import styles from './Results.module.scss';
 import { CharactersResponse } from '../../../shared/types/types';
 import { Spinner } from '../../ui/spinner/Spinner';
 import { ResultItem } from '../../ui/result/ResultItem';
+import { useTheme } from '../../../shared/hooks/useTheme';
 
 interface ResultsProps {
   data: CharactersResponse | null;
@@ -16,12 +17,14 @@ export const Results = ({
   isLoading,
   onSelectCharacter,
 }: ResultsProps) => {
+  const { theme } = useTheme();
+
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles[theme]}`}>
       {data?.characters.length ? (
         <>
           <div className={styles.titleContainer}>

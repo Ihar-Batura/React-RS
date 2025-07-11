@@ -1,20 +1,23 @@
 import styles from './CharacterDetails.module.scss';
 import { Character } from '../../../shared/types/types';
+import { useTheme } from '../../../shared/hooks/useTheme';
 
 interface CharacterDetailsProps {
   character: Character | null;
 }
 
 export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
+  const { theme } = useTheme();
+
   if (!character)
     return (
-      <p className={styles.title}>
+      <p className={`${styles.title} ${styles[theme]}`}>
         Character information with this UID not found!
       </p>
     );
 
   return (
-    <div className={styles.container} role="container">
+    <div className={`${styles.container} ${styles[theme]}`} role="container">
       <h2 className={styles.title}>Character Information:</h2>
       <section className={styles.section} data-testid="character-section">
         <h3 className={styles.littleTitle}>Performers:</h3>

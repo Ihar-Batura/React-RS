@@ -3,6 +3,7 @@ import { Character } from '../../../shared/types/types';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, removeItem } from '../../../store/selectedItemsSlice';
 import { RootState } from '../../../store/store';
+import { useTheme } from '../../../shared/hooks/useTheme';
 
 interface ResultItemProps {
   itemData: Character;
@@ -16,6 +17,8 @@ interface SelectedItem {
 }
 
 export const ResultItem = ({ itemData, onSelect }: ResultItemProps) => {
+  const { theme } = useTheme();
+
   const descriptions = Object.entries(itemData).reduce(
     (acc, curr: [string, number | string | null | undefined]) => {
       if (curr[0] === 'name' || curr[0] === 'uid') return acc;
@@ -51,7 +54,7 @@ export const ResultItem = ({ itemData, onSelect }: ResultItemProps) => {
   };
 
   return (
-    <li className={styles.container} onClick={onSelect}>
+    <li className={`${styles.container} ${styles[theme]}`} onClick={onSelect}>
       <p className={styles.name}>{itemData.name}</p>
       <p className={styles.description}>{descriptions}</p>
       <input
