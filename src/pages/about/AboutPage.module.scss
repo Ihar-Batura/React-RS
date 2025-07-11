@@ -7,6 +7,26 @@
   min-height: calc(100dvh - 110px);
   padding: 40px 10px;
   background-color: $background-dark-light;
+
+  &.light{
+    background-color: $primary-white;
+
+    .title {
+      color: $background-dark;
+    }
+    
+    .link{
+      color: $primary-light-blue;
+    }
+
+    .button{
+      @include button(
+        $width: 200px,
+        $color: $primary-white,
+        $background-color: $primary-light-blue,
+      )  
+    }
+  }
 }
 
 .wrapper {

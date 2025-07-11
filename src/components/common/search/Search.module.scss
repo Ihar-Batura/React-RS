@@ -5,6 +5,20 @@
   gap: 15px;
   width: 100%;
   padding: 20px 10px;
+
+  &.light{
+    .input {
+      background-color: $primary-gray-light;
+      color: $primary-yellow;
+    }
+    
+    .button {
+      @include button(
+        $color: $primary-white,
+        $background-color: $primary-light-blue,
+      )
+    }
+  }
 }
 
 .input {

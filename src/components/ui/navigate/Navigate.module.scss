@@ -4,6 +4,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.light{
+    .item {
+      color: $background-dark-light;
+    }
+  }
+}
+
+.itemList {
+  display: flex;
+  gap: 15px;
 }
 
 .item{

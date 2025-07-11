@@ -7,6 +7,23 @@
   padding: 20px 10px;
   border-radius: 6px;
   background-color: $background-dark;
+
+  &.light{
+    background-color: $primary-gray-light;
+
+    .title {
+      color: $background-dark-light;
+    }
+    
+    .button {
+      @include button(
+      $font-size: 14px,
+      $padding: 6px 9px,
+      $color: $primary-white,
+      $background-color:$primary-light-blue,
+    )
+    }
+  }
 }
 
 .title {
