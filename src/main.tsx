@@ -5,6 +5,7 @@ import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router';
 import { store } from './store/store';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from './context/ThemeProvider.tsx';
 
 const root: HTMLElement | null = document.getElementById('root');
 
@@ -12,9 +13,11 @@ if (root) {
   createRoot(root).render(
     <StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ThemeProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
       </Provider>
     </StrictMode>
   );
