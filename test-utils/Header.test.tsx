@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Header } from '../src/components/layout/header/Header';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 const mockNavigate = vi.fn();
 
@@ -12,8 +13,19 @@ vi.mock('react-router', async () => {
 });
 
 describe('Header Component', () => {
+  beforeEach(() => {
+    mockNavigate.mockClear();
+  });
+
+  const renderHeader = () => {
+    return render(
+      <ThemeProvider>
+        <Header />
+      </ThemeProvider>
+    );
+  };
   it('renders header element with logo and navigation component', () => {
-    render(<Header />);
+    renderHeader();
 
     const headerElement = screen.getByRole('banner');
     expect(headerElement).toBeInTheDocument();
@@ -28,7 +40,7 @@ describe('Header Component', () => {
   });
 
   it('calls navigate("/") when logo is clicked', () => {
-    render(<Header />);
+    renderHeader();
 
     const logoElement = screen.getByText('Star Trek');
     fireEvent.click(logoElement);
@@ -37,7 +49,7 @@ describe('Header Component', () => {
   });
 
   it('calls navigate("/about") when button about is clicked', () => {
-    render(<Header />);
+    renderHeader();
 
     const buttonAbout = screen.getByText('About');
     fireEvent.click(buttonAbout);
