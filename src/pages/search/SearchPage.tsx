@@ -27,6 +27,7 @@ export const SearchPage = () => {
     data: searchResults,
     isLoading: searchLoading,
     isError: searchError,
+    refetch: refetchSearchResults,
   } = useSearchCharactersQuery({
     term: searchTerm.trim(),
     page: currentPage - 1,
@@ -36,6 +37,7 @@ export const SearchPage = () => {
     data: detailsData,
     isLoading: detailsLoading,
     isError: detailsError,
+    refetch: refetchDetailsData,
   } = useGetCharacterByUidQuery(detailsUidFromUrl || '', {
     skip: !detailsUidFromUrl,
   });
@@ -67,6 +69,13 @@ export const SearchPage = () => {
     navigate(`?${newSearchParams.toString()}`, { replace: true });
   };
 
+  const handleForceRefresh = () => {
+    refetchSearchResults();
+    if (detailsUidFromUrl) {
+      refetchDetailsData();
+    }
+  };
+
   const selectedItems = useSelector(
     (state: RootState) => state.selectedItems.selectedItems
   );
@@ -91,6 +100,14 @@ export const SearchPage = () => {
               />
             )}
           {selectedItems.length > 0 && <PopupChoseElements />}
+          {searchResults?.page?.totalPages && (
+            <button
+              className={styles.refreshButton}
+              onClick={handleForceRefresh}
+            >
+              Force Refresh
+            </button>
+          )}
         </div>
         {detailsUidFromUrl && (
           <div className={styles.detailsSection}>
