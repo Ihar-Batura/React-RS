@@ -70,6 +70,13 @@ background-color: $background-dark;
   )
 }
 
+.refreshButton{
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  @include button()
+}
+
 @media (width < 800px) {
   .wrapper {
     flex-direction: column;
