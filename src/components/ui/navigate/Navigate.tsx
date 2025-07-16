@@ -1,26 +1,25 @@
+'use client';
+
 import styles from './Navigate.module.scss';
-import { useNavigate } from 'react-router';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import Link from 'next/link';
 
 export const Navigate = () => {
-  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
   const changeTheme = () => {
     toggleTheme();
   };
 
-  const handleGoAbout = () => {
-    navigate('/about');
-  };
-
   return (
     <nav className={`${styles.container} ${styles[theme]}`}>
       <ul className={styles.itemList}>
-        <li className={styles.item} onClick={handleGoAbout}>
-          About
+        <li className={styles.item}>
+          <Link className={styles.link} href="/about">
+            About
+          </Link>
         </li>
-        <li className={styles.item} onClick={changeTheme}>
+        <li className={styles.link} onClick={changeTheme}>
           {theme === 'light' ? 'Dark' : 'Light'}
         </li>
       </ul>
