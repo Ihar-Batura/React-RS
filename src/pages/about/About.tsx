@@ -1,14 +1,17 @@
-import styles from './AboutPage.module.scss';
-import { useNavigate } from 'react-router';
-import { useTheme } from '../../shared/hooks/useTheme';
+'use client';
 
-export const AboutPage = () => {
+import styles from './About.module.scss';
+import { useTheme } from '../../shared/hooks/useTheme';
+import { useRouter } from 'next/navigation';
+
+export const About = () => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleGoBack = () => {
-    navigate(-1);
+    router.back();
   };
+
   return (
     <main className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.wrapper}>
