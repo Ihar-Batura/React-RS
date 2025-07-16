@@ -6,7 +6,7 @@
   align-items: center;
 
   &.light{
-    .item {
+    .link, .item{
       color: $background-dark-light;
     }
   }
@@ -17,8 +17,10 @@
   gap: 15px;
 }
 
-.item{
-  list-style: none;
+.link, .item{
+  text-decoration: none;
   color: $primary-blue;
+  list-style: none;
   cursor: pointer;
 }
+
