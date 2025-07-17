@@ -12,7 +12,6 @@ export const Header = () => {
       <div className={styles.wrapper}>
         <h1>
           <Link className={styles.logo} href="/">
-            {' '}
             Star Trek
           </Link>
         </h1>
