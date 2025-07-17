@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './PopupChoseElements.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeAllItems } from '../../../store/selectedItemsSlice';

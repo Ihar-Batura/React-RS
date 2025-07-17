@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Pagination.module.scss';
 import { useTheme } from '../../../shared/hooks/useTheme';
 

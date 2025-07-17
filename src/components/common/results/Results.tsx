@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Results.module.scss';
 import { CharactersResponse } from '../../../shared/types/types';
 import { Spinner } from '../../ui/spinner/Spinner';

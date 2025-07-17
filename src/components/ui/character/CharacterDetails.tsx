@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './CharacterDetails.module.scss';
 import { Character } from '../../../shared/types/types';
 import { useTheme } from '../../../shared/hooks/useTheme';

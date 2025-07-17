@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Search.module.scss';
 import { useLocalStorageSearchTerm } from '../../../shared/hooks/useLocalStorageSearchTerm';
 import setLastSearchTermToLS from '../../../shared/ls/setLastSearchTermToLS';

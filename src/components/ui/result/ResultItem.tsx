@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './ResultItem.module.scss';
 import { Character } from '../../../shared/types/types';
 import { useSelector, useDispatch } from 'react-redux';
