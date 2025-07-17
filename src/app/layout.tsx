@@ -1,4 +1,10 @@
+'use client';
+
 import './globals.scss';
+import { ThemeProvider } from '../context/ThemeProvider';
+import { ErrorBoundary } from '../shared/utils/error/ErrorBoundary';
+import { Provider } from 'react-redux';
+import { store } from '../store/store';
 
 export default function RootLayout({
   children,
@@ -13,7 +19,13 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/star-trek-logo.svg" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Provider store={store}>
+          <ThemeProvider>
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </ThemeProvider>
+        </Provider>
+      </body>
     </html>
   );
 }
