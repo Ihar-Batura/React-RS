@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { NotFoundPage } from '../src/pages/not-found/NotFoundPage';
 import { MemoryRouter } from 'react-router';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 const mockNavigate = vi.fn();
 
@@ -17,12 +18,18 @@ describe('NotFoundPage Component', () => {
     mockNavigate.mockClear();
   });
 
-  it('renders not-found with correct structure', () => {
-    render(
+  const renderNotFoundPage = () => {
+    return render(
       <MemoryRouter>
-        <NotFoundPage />
+        <ThemeProvider>
+          <NotFoundPage />
+        </ThemeProvider>
       </MemoryRouter>
     );
+  };
+
+  it('renders not-found page with correct structure', () => {
+    renderNotFoundPage();
 
     const container = screen.getByRole('main');
     expect(container).toBeInTheDocument();
@@ -42,11 +49,7 @@ describe('NotFoundPage Component', () => {
   });
 
   it('calls navigate with -1 when Go Back button is clicked', () => {
-    render(
-      <MemoryRouter>
-        <NotFoundPage />
-      </MemoryRouter>
-    );
+    renderNotFoundPage();
 
     const buttonGoBack = screen.getByText('Go Back');
     fireEvent.click(buttonGoBack);
@@ -55,11 +58,7 @@ describe('NotFoundPage Component', () => {
   });
 
   it('calls navigate with / when Go Home button is clicked', () => {
-    render(
-      <MemoryRouter>
-        <NotFoundPage />
-      </MemoryRouter>
-    );
+    renderNotFoundPage();
 
     const buttonGoBack = screen.getByText('Go Home');
     fireEvent.click(buttonGoBack);

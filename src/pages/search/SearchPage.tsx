@@ -10,8 +10,14 @@ import { Pagination } from '../../components/common/pagination/Pagination';
 import apiGetCharacterData from '../../shared/api/apiGetCharacterData';
 import { Spinner } from '../../components/ui/spinner/Spinner';
 import { CharacterDetails } from '../../components/ui/character/CharacterDetails';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { PopupChoseElements } from '../../components/ui/popup/PopupChoseElements';
+import { useTheme } from '../../shared/hooks/useTheme';
 
 export const SearchPage = () => {
+  const { theme } = useTheme();
+
   const [searchTerm, setSearchTerm] = useLocalStorageSearchTerm();
   const [searchResults, setSearchResults] = useState<CharactersResponse | null>(
     null
@@ -98,8 +104,12 @@ export const SearchPage = () => {
     navigate(`?${newSearchParams.toString()}`, { replace: true });
   };
 
+  const selectedItems = useSelector(
+    (state: RootState) => state.selectedItems.selectedItems
+  );
+
   return (
-    <main className={styles.container}>
+    <main className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.wrapper}>
         <div className={styles.searchSection}>
           <Search onSearch={handleSearch} />
@@ -117,6 +127,7 @@ export const SearchPage = () => {
                 onPageChange={handlePageChange}
               />
             )}
+          {selectedItems.length > 0 && <PopupChoseElements />}
         </div>
         {detailsUidFromUrl && (
           <div className={styles.detailsSection}>

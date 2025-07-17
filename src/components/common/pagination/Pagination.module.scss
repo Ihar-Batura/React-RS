@@ -26,6 +26,23 @@
       cursor: not-allowed;
     }
   }
+
+  &.light{
+    button {
+      color: $background-dark-light;
+
+      &:hover {
+        color: $primary-red;
+      }
+  
+      &.active {
+        color: $primary-red;
+      }
+    }
+    .ellipsis {
+      color: $background-dark-light;
+    }
+  }
 }
 
 .ellipsis {

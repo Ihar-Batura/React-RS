@@ -16,3 +16,18 @@
   font-size: 14px;
   color: $primary-white;
 }
+
+.container {
+  &.light{
+    .title {
+      color: $primary-red;
+    }
+    .littleTitle{
+      color: $background-dark;
+    }
+    
+    .description {
+      color: $border-blue;
+    }
+  }
+}

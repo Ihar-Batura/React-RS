@@ -1,4 +1,5 @@
 import styles from './Pagination.module.scss';
+import { useTheme } from '../../../shared/hooks/useTheme';
 
 interface PaginationProps {
   currentPage: number;
@@ -11,6 +12,8 @@ export const Pagination = ({
   totalPages,
   onPageChange,
 }: PaginationProps) => {
+  const { theme } = useTheme();
+
   const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
 
   const getPages = () => {
@@ -54,7 +57,7 @@ export const Pagination = ({
   if (totalPages <= 1) return null;
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles[theme]}`}>
       {pages.map((page, index) => (
         <div key={index + pages.length}>
           {typeof page === 'number' ? (

@@ -3,6 +3,20 @@
 .container {
   width: 100%;
   padding: 20px 10px;
+
+  &.light{
+    .titleName {
+      color: $primary-red;
+    }
+    
+    .titleDescription {
+      color: $primary-red;
+    }
+
+    .message {
+      color: $background-dark;
+    }
+  }
 }
 
 .titleContainer {

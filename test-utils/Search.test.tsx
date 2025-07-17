@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Search } from '../src/components/common/search/Search';
 import getLastSearchTermFromLS from '../src/shared/ls/getLastSearchTermFormLS';
 import setLastSearchTermToLS from '../src/shared/ls/setLastSearchTermToLS';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 describe('Search Component', () => {
   const mockOnSearch = vi.fn();
@@ -19,8 +20,16 @@ describe('Search Component', () => {
     localStorage.clear();
   });
 
+  const renderSearchComponent = () => {
+    return render(
+      <ThemeProvider>
+        <Search onSearch={mockOnSearch} />
+      </ThemeProvider>
+    );
+  };
+
   it('renders search component with correct structure', () => {
-    render(<Search onSearch={mockOnSearch} />);
+    renderSearchComponent();
 
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Search/i })).toBeInTheDocument();
@@ -29,7 +38,7 @@ describe('Search Component', () => {
   it('load last search term from localStorage if exists', () => {
     vi.mocked(getLastSearchTermFromLS).mockReturnValueOnce('saved query');
 
-    render(<Search onSearch={mockOnSearch} />);
+    renderSearchComponent();
 
     const input = screen.getByRole('textbox');
 
@@ -37,7 +46,7 @@ describe('Search Component', () => {
   });
 
   it('updates input value on user typing', () => {
-    render(<Search onSearch={mockOnSearch} />);
+    renderSearchComponent();
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'test query' } });
@@ -46,7 +55,7 @@ describe('Search Component', () => {
   });
 
   it('calls onSearch with correct term when button is clicked', () => {
-    render(<Search onSearch={mockOnSearch} />);
+    renderSearchComponent();
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'react' } });
@@ -58,7 +67,7 @@ describe('Search Component', () => {
   });
 
   it('save search term to localStorage when button is clicked', () => {
-    render(<Search onSearch={mockOnSearch} />);
+    renderSearchComponent();
 
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'localStorage test' } });

@@ -2,10 +2,19 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { describe, it, expect } from 'vitest';
 import { Footer } from '../src/components/layout/footer/Footer';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 describe('Footer Component', () => {
+  const renderFooter = () => {
+    return render(
+      <ThemeProvider>
+        <Footer />
+      </ThemeProvider>
+    );
+  };
+
   it('renders footer with correct structure', () => {
-    render(<Footer />);
+    renderFooter();
 
     const footerElement = screen.getByRole('contentinfo');
     expect(footerElement).toBeInTheDocument();
@@ -22,7 +31,7 @@ describe('Footer Component', () => {
   });
 
   it('renders copyright correctly', () => {
-    render(<Footer />);
+    renderFooter();
 
     const currentYear = new Date().getFullYear();
     const year = screen.getByText(`© ${currentYear}`);
@@ -30,7 +39,7 @@ describe('Footer Component', () => {
   });
 
   it('renders GitHub link correctly', () => {
-    render(<Footer />);
+    renderFooter();
 
     const link = screen.getByText(`Ihar Batura`);
     expect(link).toBeInTheDocument();

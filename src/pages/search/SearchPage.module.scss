@@ -7,6 +7,29 @@
   min-height: calc(100dvh - 110px);
   padding: 40px 10px;
   background-color: $background-dark-light;
+
+  &.light{
+    background-color: $primary-white;
+
+     .wrapper {
+      border: 3px solid $primary-blue;
+    }
+
+     .detailsSection {
+      background-color: $primary-gray-light;
+    }
+
+    .closeButton{
+      @include button(
+        $background-color: $primary-light-blue,
+        $width: 40px,
+        $height: 40px,
+        $font-size: 25px,
+        $padding: 0,
+        $color: $primary-white,
+      )  
+    }
+  }
 }
 
 .wrapper {
@@ -45,7 +68,6 @@ background-color: $background-dark;
     $padding: 0,
     $color: $primary-white,
   )
- 
 }
 
 @media (width < 800px) {

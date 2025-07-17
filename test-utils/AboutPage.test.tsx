@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { AboutPage } from '../src/pages/about/AboutPage';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 const mockNavigate = vi.fn();
 
@@ -13,12 +14,22 @@ vi.mock('react-router', async () => {
 });
 
 describe('AboutPage Component', () => {
-  it('renders about with correct structure', () => {
-    render(
+  beforeEach(() => {
+    mockNavigate.mockClear();
+  });
+
+  const renderAboutPage = () => {
+    return render(
       <MemoryRouter>
-        <AboutPage />
+        <ThemeProvider>
+          <AboutPage />
+        </ThemeProvider>
       </MemoryRouter>
     );
+  };
+
+  it('renders about with correct structure', () => {
+    renderAboutPage();
 
     const container = screen.getByRole('main');
     expect(container).toBeInTheDocument();
@@ -38,11 +49,7 @@ describe('AboutPage Component', () => {
   });
 
   it('renders link to course correctly', () => {
-    render(
-      <MemoryRouter>
-        <AboutPage />
-      </MemoryRouter>
-    );
+    renderAboutPage();
 
     const descriptionWithLink = screen.getByText(/the course program/i);
     expect(descriptionWithLink).toBeInTheDocument();
@@ -55,11 +62,7 @@ describe('AboutPage Component', () => {
   });
 
   it('calls navigate with -1 when Go Back button is clicked', () => {
-    render(
-      <MemoryRouter>
-        <AboutPage />
-      </MemoryRouter>
-    );
+    renderAboutPage();
 
     const buttonGoBack = screen.getByText('Go Back');
     fireEvent.click(buttonGoBack);

@@ -9,6 +9,26 @@
   width: 100%;
   height: 100dvh;
   background-color: $background-dark-light;
+
+  &.light{
+    background-color: $primary-white;
+
+    .title {
+      color: $background-dark;
+    }
+
+    .description {
+      color: $primary-yellow;
+    }
+
+    .button{
+      @include button(
+        $width: 200px,
+        $color: $primary-white,
+        $background-color: $primary-light-blue,
+      )  
+    }
+  }
 }
 
 .title {
@@ -24,7 +44,5 @@
 .button {
   @include button(
     $width: 200px,
-    
-    
   )
 }

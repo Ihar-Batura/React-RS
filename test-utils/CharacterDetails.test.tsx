@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { CharacterDetails } from '../src/components/ui/character/CharacterDetails';
 import { Character } from '../src/shared/types/types';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 const mockCharacterData: Character = {
   uid: 'CHMA0000009075',
@@ -47,7 +48,11 @@ const mockCharacterData: Character = {
 
 describe('CharacterDetails Component', () => {
   it('renders correct character details structure', () => {
-    render(<CharacterDetails character={mockCharacterData} />);
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={mockCharacterData} />
+      </ThemeProvider>
+    );
 
     const container = screen.getByRole('container');
     expect(container).toBeInTheDocument();
@@ -61,7 +66,11 @@ describe('CharacterDetails Component', () => {
   });
 
   it('renders message when no character is provided', () => {
-    render(<CharacterDetails character={null} />);
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={null} />
+      </ThemeProvider>
+    );
 
     const errorMessage = screen.getByText(
       /Character information with this UID not found!/i
@@ -70,7 +79,11 @@ describe('CharacterDetails Component', () => {
   });
 
   it('renders all section titles correctly ', () => {
-    render(<CharacterDetails character={mockCharacterData} />);
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={mockCharacterData} />
+      </ThemeProvider>
+    );
 
     expect(screen.getByText(/Performers:/i)).toBeInTheDocument();
     expect(screen.getByText(/Episodes:/i)).toBeInTheDocument();
@@ -81,7 +94,11 @@ describe('CharacterDetails Component', () => {
   });
 
   it('renders section correctly when character data is provided', () => {
-    render(<CharacterDetails character={mockCharacterData} />);
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={mockCharacterData} />
+      </ThemeProvider>
+    );
 
     const descriptionWithLink = screen.getByText(/Character Information/i);
     expect(descriptionWithLink).toBeInTheDocument();
@@ -90,7 +107,11 @@ describe('CharacterDetails Component', () => {
   });
 
   it('renders section correctly when character data is partial presence of', () => {
-    render(<CharacterDetails character={mockCharacterData} />);
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={mockCharacterData} />
+      </ThemeProvider>
+    );
 
     const descriptionWithLink = screen.getByText(/Character Information/i);
     expect(descriptionWithLink).toBeInTheDocument();
@@ -133,7 +154,13 @@ describe('CharacterDetails Component', () => {
         },
       ],
     };
-    render(<CharacterDetails character={characterWithOrganizations} />);
+
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={characterWithOrganizations} />
+      </ThemeProvider>
+    );
+
     expect(screen.getByText(/Organizations:/i)).toBeInTheDocument();
     expect(screen.getByText(/Starfleet/i)).toBeInTheDocument();
   });
@@ -150,7 +177,13 @@ describe('CharacterDetails Component', () => {
         },
       ],
     };
-    render(<CharacterDetails character={characterWithSpecies} />);
+
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={characterWithSpecies} />
+      </ThemeProvider>
+    );
+
     expect(screen.getByText(/Species:/i)).toBeInTheDocument();
     expect(screen.getByText(/Vulcan — 1\/2/i)).toBeInTheDocument();
   });
@@ -184,7 +217,13 @@ describe('CharacterDetails Component', () => {
         },
       ],
     };
-    render(<CharacterDetails character={characterWithMovies} />);
+
+    render(
+      <ThemeProvider>
+        <CharacterDetails character={characterWithMovies} />
+      </ThemeProvider>
+    );
+
     expect(screen.getByText(/Movies:/i)).toBeInTheDocument();
     expect(
       screen.getByText(/Star Trek: The Motion Picture/i)

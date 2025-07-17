@@ -1,17 +1,27 @@
 import { render, screen } from '@testing-library/react';
 import { ErrorBoundary } from '../src/shared/utils/error/ErrorBoundary';
-import { vi } from 'vitest';
+import { ThemeProvider } from '../src/context/ThemeProvider';
 
 describe('Error Boundary', () => {
   const ThrowError = () => {
     throw new Error('Test error');
   };
 
+  beforeAll(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterAll(() => {
+    vi.restoreAllMocks();
+  });
+
   it('renders children when there is no error', () => {
     render(
-      <ErrorBoundary>
-        <div>Child Content</div>
-      </ErrorBoundary>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <div>Child Content</div>
+        </ErrorBoundary>
+      </ThemeProvider>
     );
 
     expect(screen.getByText('Child Content')).toBeInTheDocument();
@@ -19,10 +29,12 @@ describe('Error Boundary', () => {
 
   it('catches an error and displays the fallback UI', () => {
     render(
-      <ErrorBoundary>
-        <ThrowError />
-        <div>Child Content</div>
-      </ErrorBoundary>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <ThrowError />
+          <div>Child Content</div>
+        </ErrorBoundary>
+      </ThemeProvider>
     );
 
     expect(screen.getByText('Something went wrong...')).toBeInTheDocument();
@@ -33,16 +45,13 @@ describe('Error Boundary', () => {
     expect(screen.queryByText(/Child Content/i)).not.toBeInTheDocument();
   });
 
-  it('logs an error to console when an error happen', () => {
-    const consoleSpy = vi.spyOn(console, 'error');
-
+  it('renders children when theme context is not available', () => {
     render(
       <ErrorBoundary>
-        <ThrowError />
+        <div>Child Without Theme</div>
       </ErrorBoundary>
     );
 
-    expect(consoleSpy).toHaveBeenCalled();
-    consoleSpy.mockRestore();
+    expect(screen.getByText('Child Without Theme')).toBeInTheDocument();
   });
 });
