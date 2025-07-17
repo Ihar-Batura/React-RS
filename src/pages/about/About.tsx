@@ -4,7 +4,7 @@ import styles from './About.module.scss';
 import { useTheme } from '../../shared/hooks/useTheme';
 import { useRouter } from 'next/navigation';
 
-export const About = () => {
+export default function About() {
   const { theme } = useTheme();
   const router = useRouter();
 
@@ -43,4 +43,4 @@ export const About = () => {
       </div>
     </main>
   );
-};
+}

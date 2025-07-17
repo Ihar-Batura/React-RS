@@ -18,9 +18,9 @@ export const Pagination = ({
 
   const safeCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
 
-  const getPages = () => {
+  const getPages = (): Array<number | string> => {
     const delta = 2;
-    const pagesToShow = [];
+    const pagesToShow: number[] = [];
 
     for (
       let i = Math.max(2, safeCurrentPage - delta);
@@ -33,7 +33,7 @@ export const Pagination = ({
     const showFirstEllipsis = safeCurrentPage - delta > 2;
     const showLastEllipsis = safeCurrentPage + delta < totalPages - 1;
 
-    const result = [];
+    const result: Array<number | string> = [];
 
     result.push(1);
 

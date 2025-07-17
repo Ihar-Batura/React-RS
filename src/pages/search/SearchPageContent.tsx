@@ -15,7 +15,7 @@ import { useTheme } from '../../shared/hooks/useTheme';
 import { useGetCharacterByUidQuery } from '../../store/apiSlice';
 import { useSearchCharactersQuery } from '../../store/apiSlice';
 
-export const SearchPageContent = () => {
+export default function SearchPageContent() {
   const { theme } = useTheme();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -129,4 +129,4 @@ export const SearchPageContent = () => {
       </div>
     </main>
   );
-};
+}

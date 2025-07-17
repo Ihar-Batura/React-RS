@@ -1,3 +1,5 @@
 export default function setLastSearchTermToLS(term: string): void {
-  localStorage.setItem('lastSearchTerm', term.trim());
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('lastSearchTerm', term);
+  }
 }
