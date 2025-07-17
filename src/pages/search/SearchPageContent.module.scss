@@ -1,0 +1,95 @@
+@use '../../assets/styles/globals' as *;
+
+.container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100dvh - 110px);
+  padding: 40px 10px;
+  background-color: $background-dark-light;
+
+  &.light{
+    background-color: $primary-white;
+
+     .wrapper {
+      border: 3px solid $primary-blue;
+    }
+
+     .detailsSection {
+      background-color: $primary-gray-light;
+    }
+
+    .closeButton{
+      @include button(
+        $background-color: $primary-light-blue,
+        $width: 40px,
+        $height: 40px,
+        $font-size: 25px,
+        $padding: 0,
+        $color: $primary-white,
+      )  
+    }
+
+    .refreshButton{
+      @include button(
+        $background-color: $primary-light-blue,
+        $color: $primary-white,
+      )  
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px 10px;
+  border: 3px solid $border-blue;
+}
+
+.searchSection{
+  width: 100%;
+}
+
+.detailsSection {
+position: relative;
+width: 40%;
+padding: 58px 2px 2px 10px;
+margin-top: 20px;
+border-radius: 6px;
+background-color: $background-dark;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  @include button(
+    $background-color: $primary-red,
+    $width: 40px,
+    $height: 40px,
+    $font-size: 25px,
+    $padding: 0,
+    $color: $primary-white,
+  )
+}
+
+.refreshButton{
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  @include button()
+}
+
+@media (width < 800px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .detailsSection {
+  width: 100%;
+  }
+}
