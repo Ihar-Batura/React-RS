@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 export class Spinner extends Component {
   render(): ReactNode {
     return (
-      <div className={styles.container}>
+      <div className={styles.container} role="status">
         <span className={styles.spinner} />
       </div>
     );
