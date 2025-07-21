@@ -1,0 +1,13 @@
+@use '../../../assets/styles/globals' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item{
+  list-style: none;
+  color: $primary-blue;
+  cursor: pointer;
+}

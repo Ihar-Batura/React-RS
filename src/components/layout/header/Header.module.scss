@@ -9,14 +9,17 @@
 }
 
 .wrapper {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   max-height: 55px;
   max-width: 1200px;
   margin: 0 auto;
-   padding: 5px 15px;
+  padding: 5px 15px;
 }
 
 .logo {
   text-align: center;
   color: $primary-white;
+  cursor: pointer;
 }

@@ -1,15 +1,23 @@
-import { Component } from 'react';
-import type { ReactNode } from 'react';
 import styles from './Header.module.scss';
+import { useNavigate } from 'react-router';
 
-export class Header extends Component {
-  render(): ReactNode {
-    return (
-      <header className={styles.header}>
-        <div className={styles.wrapper}>
-          <h1 className={styles.logo}>Star Trek</h1>
-        </div>
-      </header>
-    );
-  }
-}
+import { Navigate } from '../../ui/navigate/Navigate';
+
+export const Header = () => {
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.wrapper}>
+        <h1 className={styles.logo} onClick={handleGoHome}>
+          Star Trek
+        </h1>
+        <Navigate />
+      </div>
+    </header>
+  );
+};

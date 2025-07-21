@@ -1,5 +1,5 @@
 import { describe, expect, Mock } from 'vitest';
-import { apiSearchCharacters } from '../src/shared/api/apiSearchCharacters';
+import apiSearchCharacters from '../src/shared/api/apiSearchCharacters';
 import type { CharactersResponse } from '../src/shared/types/types';
 
 const mockFetch = vi.fn() as Mock;
@@ -32,14 +32,14 @@ const mockCharactersData: CharactersResponse = {
       fictionalCharacter: true,
       mirror: true,
       alternateReality: true,
-      performers: [[]],
-      episodes: [[]],
-      movies: [[]],
-      characterSpecies: [[]],
-      characterRelations: [[]],
-      titles: [[]],
-      occupations: [[]],
-      organizations: [[]],
+      performers: [],
+      episodes: [],
+      movies: [],
+      characterSpecies: [],
+      characterRelations: [],
+      titles: [],
+      occupations: [],
+      organizations: [],
     },
   ],
   page: {
@@ -47,7 +47,7 @@ const mockCharactersData: CharactersResponse = {
     lastPage: false,
     numberOfElements: 1,
     pageNumber: 0,
-    pageSize: 100,
+    pageSize: 20,
     totalElements: 1,
     totalPages: 1,
   },
@@ -68,10 +68,10 @@ describe('apiSearchCharacters', () => {
       json: async () => mockCharactersData,
     });
 
-    const result = await apiSearchCharacters('Spock');
+    const result = await apiSearchCharacters('Spock', 0);
 
     expect(fetch).toHaveBeenCalledWith(
-      'https://stapi.co/api/v1/rest/character/search?pageNumber=0&pageSize=100',
+      'https://stapi.co/api/v1/rest/character/search?pageNumber=0&pageSize=20',
       {
         method: 'POST',
         headers: {
@@ -90,7 +90,7 @@ describe('apiSearchCharacters', () => {
       status: 500,
     });
 
-    await expect(apiSearchCharacters('test')).rejects.toThrowError(
+    await expect(apiSearchCharacters('test', 0)).rejects.toThrowError(
       'HTTP error! Status: 500'
     );
   });

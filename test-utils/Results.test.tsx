@@ -29,14 +29,14 @@ const mockCharactersData: CharactersResponse = {
       fictionalCharacter: true,
       mirror: true,
       alternateReality: true,
-      performers: [[]],
-      episodes: [[]],
-      movies: [[]],
-      characterSpecies: [[]],
-      characterRelations: [[]],
-      titles: [[]],
-      occupations: [[]],
-      organizations: [[]],
+      performers: [],
+      episodes: [],
+      movies: [],
+      characterSpecies: [],
+      characterRelations: [],
+      titles: [],
+      occupations: [],
+      organizations: [],
     },
   ],
   page: {
@@ -55,25 +55,51 @@ const mockCharactersData: CharactersResponse = {
 
 describe('Results Component', () => {
   it('should render Spinner when isLoading = true', () => {
-    render(<Results data={null} isError={false} isLoading={true} />);
+    render(
+      <Results
+        data={null}
+        isError={false}
+        isLoading={true}
+        onSelectCharacter={() => {}}
+      />
+    );
     expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
   it('should display an error message if isError = true', () => {
-    render(<Results data={null} isError={true} isLoading={false} />);
+    render(
+      <Results
+        data={null}
+        isError={true}
+        isLoading={false}
+        onSelectCharacter={() => {}}
+      />
+    );
     expect(
       screen.getByText(/Ooops! Error getting characters collection/i)
     ).toBeInTheDocument();
   });
 
   it('should display "Nothing found" if there is no data and isError = false', () => {
-    render(<Results data={null} isError={false} isLoading={false} />);
+    render(
+      <Results
+        data={null}
+        isError={false}
+        isLoading={false}
+        onSelectCharacter={() => {}}
+      />
+    );
     expect(screen.getByText(/Nothing found!/i)).toBeInTheDocument();
   });
 
   it('render results component with correct structure', () => {
     render(
-      <Results data={mockCharactersData} isError={false} isLoading={false} />
+      <Results
+        data={mockCharactersData}
+        isError={false}
+        isLoading={false}
+        onSelectCharacter={() => {}}
+      />
     );
     expect(screen.getByText('Character:')).toBeInTheDocument();
     expect(screen.getByText('Description:')).toBeInTheDocument();

@@ -1,76 +1,136 @@
-import { Component } from 'react';
-import type { ReactNode } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router';
 import styles from './SearchPage.module.scss';
 import { Search } from '../../components/common/search/Search';
 import { Results } from '../../components/common/results/Results';
-import { apiSearchCharacters } from '../../shared/api/apiSearchCharacters';
-import { CharactersResponse } from '../../shared/types/types';
-import getLastSearchTermFromLS from '../../shared/ls/getLastSearchTermFormLS';
+import apiSearchCharacters from '../../shared/api/apiSearchCharacters';
+import { CharactersResponse, Character } from '../../shared/types/types';
+import { useLocalStorageSearchTerm } from '../../shared/hooks/useLocalStorageSearchTerm';
+import { Pagination } from '../../components/common/pagination/Pagination';
+import apiGetCharacterData from '../../shared/api/apiGetCharacterData';
+import { Spinner } from '../../components/ui/spinner/Spinner';
+import { CharacterDetails } from '../../components/ui/character/CharacterDetails';
 
-interface SearchPageState {
-  searchTerm: string;
-  searchResults: CharactersResponse | null;
-  searchError: boolean;
-  isLoading: boolean;
-  hasTestError: boolean;
-}
+export const SearchPage = () => {
+  const [searchTerm, setSearchTerm] = useLocalStorageSearchTerm();
+  const [searchResults, setSearchResults] = useState<CharactersResponse | null>(
+    null
+  );
+  const [searchError, setSearchError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-export class SearchPage extends Component {
-  state: SearchPageState = {
-    searchTerm: '',
-    searchResults: null,
-    searchError: false,
-    isLoading: false,
-    hasTestError: false,
-  };
+  const [detailsData, setDetailsData] = useState<Character | null>(null);
+  const [detailsLoading, setDetailsLoading] = useState(false);
 
-  componentDidMount(): void {
-    const lastTerm = getLastSearchTermFromLS();
-    const term = lastTerm ?? '';
-    this.handleSearch(term);
-  }
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  handleSearch = async (term: string): Promise<void> => {
-    this.setState({ isLoading: true });
-    try {
-      const results = await apiSearchCharacters(term.trim());
+  const currentPage = Number(searchParams.get('page')) || 1;
+  const detailsUidFromUrl = searchParams.get('details');
 
-      this.setState({
-        searchResults: results,
-        searchTerm: term,
-      });
-    } catch (error) {
-      console.error('Failed to fetch characters:', error);
-      this.setState({ searchError: true });
-    } finally {
-      this.setState({ isLoading: false });
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const results = await apiSearchCharacters(
+          searchTerm.trim(),
+          currentPage - 1
+        );
+        setSearchResults(results);
+      } catch (error) {
+        console.error('Failed to fetch characters:', error);
+        setSearchError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [searchTerm, currentPage]);
+
+  useEffect(() => {
+    if (!detailsUidFromUrl) {
+      setDetailsData(null);
+      return;
     }
+
+    const fetchDetails = async () => {
+      setDetailsLoading(true);
+
+      try {
+        const data = await apiGetCharacterData(detailsUidFromUrl);
+        setDetailsData(data);
+      } catch (error) {
+        console.error('Failed to load character details', error);
+      } finally {
+        setDetailsLoading(false);
+      }
+    };
+
+    fetchDetails();
+  }, [detailsUidFromUrl]);
+
+  const handleSelectCharacter = (uid: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('details', uid);
+    navigate(`?${newSearchParams.toString()}`);
   };
 
-  throwTestError = (): void => {
-    this.setState({
-      hasTestError: true,
-    });
+  const handleCloseDetails = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('details');
+    navigate(`?${newSearchParams.toString()}`);
+    setDetailsData(null);
   };
 
-  render(): ReactNode {
-    if (this.state.hasTestError) {
-      throw new Error("Don't worry this a test error");
-    }
-    return (
-      <main className={styles.container}>
-        <div className={styles.wrapper}>
-          <Search onSearch={this.handleSearch} />
+  const handleSearch = (term: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('page', '1');
+    newSearchParams.delete('details');
+    navigate(`?${newSearchParams.toString()}`, { replace: true });
+    setSearchTerm(term);
+  };
+
+  const handlePageChange = (page: number) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('page', page.toString());
+    newSearchParams.delete('details');
+    navigate(`?${newSearchParams.toString()}`, { replace: true });
+  };
+
+  return (
+    <main className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.searchSection}>
+          <Search onSearch={handleSearch} />
           <Results
-            data={this.state.searchResults}
-            isError={this.state.searchError}
-            isLoading={this.state.isLoading}
+            data={searchResults}
+            isError={searchError}
+            isLoading={isLoading}
+            onSelectCharacter={handleSelectCharacter}
           />
-          <button className={styles.button} onClick={this.throwTestError}>
-            Error Button
-          </button>
+          {searchResults?.page?.totalPages &&
+            searchResults.page.totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={searchResults.page.totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
         </div>
-      </main>
-    );
-  }
-}
+        {detailsUidFromUrl && (
+          <div className={styles.detailsSection}>
+            <button className={styles.closeButton} onClick={handleCloseDetails}>
+              &times;
+            </button>
+            {detailsLoading ? (
+              <Spinner />
+            ) : (
+              <CharacterDetails character={detailsData} />
+            )}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+};
