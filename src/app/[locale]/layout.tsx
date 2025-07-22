@@ -1,6 +1,8 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '../../i18n/routing';
+import ErrorBoundary from '../../shared/utils/error/ErrorBoundary';
+import { Messages } from '../../shared/types/types';
 
 export default async function LocaleLayout({
   children,
@@ -14,6 +16,9 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const messages: Messages = (await import(`../../../messages/${locale}.json`))
+    .default;
+
   return (
     <html lang={locale}>
       <head>
@@ -23,7 +28,9 @@ export default async function LocaleLayout({
         <link rel="icon" href="/star-trek-logo.svg" />
       </head>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
