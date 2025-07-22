@@ -166,3 +166,70 @@ export interface CharactersResponse {
     clauses: [];
   };
 }
+
+export interface Messages {
+  Header: {
+    logo: string;
+  };
+  Navigate: {
+    btnAbout: string;
+    btnThemeLight: string;
+    btnThemeDark: string;
+    btnLang: string;
+  };
+  Footer: {
+    author: string;
+  };
+  Search: {
+    placeholder: string;
+    buttonText: string;
+  };
+  SearchPageContent: {
+    buttonText: string;
+    errorText: string;
+  };
+  Results: {
+    character: string;
+    description: string;
+    oopsText: string;
+    notFoundText: string;
+  };
+  CharacterDetails: {
+    notFoundText: string;
+    title: string;
+    titlePerformers: string;
+    notFoundPerformersText: string;
+    titleEpisodes: string;
+    notFoundEpisodesText: string;
+    titleMovies: string;
+    moviesDirectorTitle: string;
+    moviesDirectorStart: string;
+    moviesDirectorRelease: string;
+    notFoundMoviesText: string;
+    titleOccupations: string;
+    notFoundOccupationsText: string;
+    titleSpecies: string;
+    notFoundSpeciesText: string;
+    titleOrganizations: string;
+    notFoundOrganizationsText: string;
+  };
+  PopupChoseElements: {
+    title: string;
+    value: string;
+    endingValue: string;
+    buttonUnselectText: string;
+    buttonDownloadText: string;
+  };
+  About: {
+    firstTextTitle: string;
+    secondTextTitle: string;
+    linkTitle: string;
+    linkText: string;
+    buttonText: string;
+  };
+  ErrorBoundary: {
+    title: string;
+    description: string;
+    buttonText: string;
+  };
+}
