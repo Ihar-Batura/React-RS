@@ -1,8 +1,8 @@
 'use client';
 
-import './globals.scss';
+import './[locale]/globals.scss';
 import { ThemeProvider } from '../context/ThemeProvider';
-import { ErrorBoundary } from '../shared/utils/error/ErrorBoundary';
+
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 
@@ -21,9 +21,7 @@ export default function RootLayout({
       </head>
       <body>
         <Provider store={store}>
-          <ThemeProvider>
-            <ErrorBoundary>{children}</ErrorBoundary>
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </Provider>
       </body>
     </html>
