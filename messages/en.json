@@ -1,0 +1,12 @@
+{
+  "Header": {
+    "logo": "Star Trek"
+  },
+  "Navigate": {
+    "btnAbout": "About",
+    "btnThemeLight": "Light",
+    "btnThemeDark": "Dark",
+    "btnLang": "Ru"
+  },
+  "switcherLang": "ru"
+}

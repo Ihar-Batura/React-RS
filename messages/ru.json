@@ -1,0 +1,12 @@
+{
+  "Header": {
+    "logo": "Звездный путь"
+  },
+  "Navigate": {
+    "btnAbout": "О нас",
+    "btnThemeLight": "Светлая",
+    "btnThemeDark": "Тёмная",
+    "btnLang": "En"
+  },
+  "switcherLang": "en"
+}
