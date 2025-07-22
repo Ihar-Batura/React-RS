@@ -8,5 +8,59 @@
     "btnThemeDark": "Dark",
     "btnLang": "Ru"
   },
-  "switcherLang": "ru"
+  "Footer": {
+    "author": "Ihar Batura"
+  },
+  "Search": {
+    "placeholder": "Enter character name",
+    "buttonText": "Search"
+  },
+  "SearchPageContent": {
+    "buttonText": "Force Refresh",
+    "errorText": "Error loading character details"
+  },
+  "Results": {
+    "character": "Character",
+    "description": "Description",
+    "oopsText": "Ooops! Error getting characters collection...",
+    "notFoundText": "Nothing found!"
+  },
+  "CharacterDetails": {
+    "notFoundText": "Character information with this UID not found!",
+    "title": "Character Information:",
+    "titlePerformers": "Performers:",
+    "notFoundPerformersText": "No performer information available.",
+    "titleEpisodes": "Episodes:",
+    "notFoundEpisodesText": "This character does not appear in any episodes.",
+    "titleMovies": "Movies:",
+    "moviesDirectorTitle": "Director:",
+    "moviesDirectorStart": "Start dates:",
+    "moviesDirectorRelease": "US Release Date:",
+    "notFoundMoviesText": "This character does not appear in any movies.",
+    "titleOccupations": "Occupations:",
+    "notFoundOccupationsText": "No occupations found.",
+    "titleSpecies": "Species:",
+    "notFoundSpeciesText": "No species information available.",
+    "titleOrganizations": "Organizations:",
+    "notFoundOrganizationsText": "This character is not affiliated with any organizations."
+  },
+  "PopupChoseElements": {
+    "title": "Selected",
+    "value": "item",
+    "endingValue": "s",
+    "buttonUnselectText": "Unselect all",
+    "buttonDownloadText": "Download"
+  },
+  "About": {
+    "firstTextTitle": "This project was developed as part of the React 2025 Q3 course by a goal-oriented and responsible Front-end developer with a fast learning pace and high motivation for development.",
+    "secondTextTitle": "You can find out more information about the author by following the github link below.",
+    "linkTitle": "If you want to see the course program, follow this",
+    "linkText": "link.",
+    "buttonText": "Go Back"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong...",
+    "description": "Don&apos;t worry!",
+    "buttonText": "Try again"
+  }
 }

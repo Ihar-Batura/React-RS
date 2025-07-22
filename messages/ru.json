@@ -1,12 +1,66 @@
 {
   "Header": {
-    "logo": "Звездный путь"
+    "logo": "Звёздный путь"
   },
   "Navigate": {
     "btnAbout": "О нас",
     "btnThemeLight": "Светлая",
     "btnThemeDark": "Тёмная",
-    "btnLang": "En"
+    "btnLang": "Анг"
   },
-  "switcherLang": "en"
+  "Footer": {
+    "author": "Игорь Батуро"
+  },
+  "Search": {
+    "placeholder": "Введите имя персонажа",
+    "buttonText": "Поиск"
+  },
+  "SearchPageContent": {
+    "buttonText": "Обновить принудительно",
+    "errorText": "Ошибка загрузки данных персонажа"
+  },
+  "Results": {
+    "character": "Персонаж",
+    "description": "Описание",
+    "oopsText": "Упс! Ошибка при получении коллекции персонажей...",
+    "notFoundText": "Ничего не найдено!"
+  },
+  "CharacterDetails": {
+    "notFoundText": "Информация о персонаже с таким UID не найдена!",
+    "title": "Информация о персонаже:",
+    "titlePerformers": "Исполнители:",
+    "notFoundPerformersText": "Информация об исполнителе отсутствует.",
+    "titleEpisodes": "Эпизоды:",
+    "notFoundEpisodesText": "Этот персонаж не появляется ни в одном эпизоде.",
+    "titleMovies": "Фильмы:",
+    "moviesDirectorTitle": "Режиссер:",
+    "moviesDirectorStart": "Даты начала:",
+    "moviesDirectorRelease": "Дата выхода в США:",
+    "notFoundMoviesText": "Этот персонаж не появляется ни в одном фильме.",
+    "titleOccupations": "Профессия:",
+    "notFoundOccupationsText": "Профессий не найдено.",
+    "titleSpecies": "Вид:",
+    "notFoundSpeciesText": "Информация о видах отсутствует.",
+    "titleOrganizations": "Организация:",
+    "notFoundOrganizationsText": "Этот персонаж не связан ни с одной организацией."
+  },
+  "PopupChoseElements": {
+    "title": "Выбрано",
+    "value": "элемент",
+    "endingValue": "а",
+    "buttonUnselectText": "Отменить все",
+    "buttonDownloadText": "Загрузить"
+  },
+  "About": {
+    "firstTextTitle": "Этот проект был разработан в рамках курса React 2025 Q3 целеустремленным и ответственным Front-end разработчиком с быстрым темпом обучения и высокой мотивацией к развитию.",
+    "secondTextTitle": "Более подробную информацию об авторе вы можете узнать, перейдя по ссылке на github ниже.",
+    "linkTitle": "Если вы хотите увидеть программу курса, перейдите по этой",
+    "linkText": "ссылке.",
+    "buttonText": "Вернуться назад"
+  },
+  "ErrorBoundary": {
+    "title": "Что-то пошло не так...",
+    "description": "Не волнуйся!",
+    "buttonText": "Попробовать снова"
+  }
 }
