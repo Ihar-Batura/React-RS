@@ -6,9 +6,11 @@ import { removeAllItems } from '../../../store/selectedItemsSlice';
 import { RootState } from '../../../store/store';
 import { saveAs } from 'file-saver';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import { useTranslations } from 'next-intl';
 
 export const PopupChoseElements = () => {
   const { theme } = useTheme();
+  const t = useTranslations('PopupChoseElements');
   const selectedItems = useSelector(
     (state: RootState) => state.selectedItems.selectedItems
   );
@@ -30,18 +32,18 @@ export const PopupChoseElements = () => {
   return (
     <div className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.title}>
-        Selected {selectedItems.length} item
-        {selectedItems.length > 1 ? 's' : ''}
+        {t('title')} {selectedItems.length} {t('value')}
+        {selectedItems.length > 1 ? t('endingValue') : ''}
       </div>
       <div className={styles.buttonContainer}>
         <button
           className={styles.button}
           onClick={() => dispatch(removeAllItems())}
         >
-          Unselect all
+          {t('buttonUnselectText')}
         </button>
         <button className={styles.button} onClick={handleDownloadCSV}>
-          Download
+          {t('buttonDownloadText')}
         </button>
       </div>
     </div>

@@ -2,9 +2,9 @@
 
 import styles from './Navigate.module.scss';
 import { useTheme } from '../../../shared/hooks/useTheme';
-import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
-import { usePathname, useRouter } from '../../../i18n/navigation';
+import { Link, usePathname, useRouter } from '../../../i18n/navigation';
+import { useSearchParams } from 'next/navigation';
 
 export const Navigate = () => {
   const { theme, toggleTheme } = useTheme();
@@ -12,6 +12,7 @@ export const Navigate = () => {
   const currentLocale = useLocale();
 
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const changeTheme = () => {
@@ -19,8 +20,11 @@ export const Navigate = () => {
   };
 
   const changeLanguage = () => {
+    const queryParams = searchParams
+      ? Object.fromEntries(searchParams.entries())
+      : {};
     router.replace(
-      { pathname },
+      { pathname, query: queryParams },
       { locale: currentLocale === 'en' ? 'ru' : 'en' }
     );
   };
@@ -30,11 +34,12 @@ export const Navigate = () => {
       <ul className={styles.itemList}>
         <li className={styles.item}>
           <Link className={styles.link} href="/about">
+            {' '}
             {t('btnAbout')}
           </Link>
         </li>
         <li className={styles.link} onClick={changeTheme}>
-          {theme === 'light' ? t('btnThemeLight') : t('btnThemeDark')}
+          {theme === 'light' ? t('btnThemeDark') : t('btnThemeLight')}
         </li>
         <li className={styles.link} onClick={changeLanguage}>
           {t('btnLang')}

@@ -4,6 +4,7 @@ import styles from './Search.module.scss';
 import { useLocalStorageSearchTerm } from '../../../shared/hooks/useLocalStorageSearchTerm';
 import setLastSearchTermToLS from '../../../shared/ls/setLastSearchTermToLS';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import { useTranslations } from 'next-intl';
 
 interface SearchProps {
   onSearch: (term: string) => void;
@@ -11,6 +12,7 @@ interface SearchProps {
 
 export const Search = ({ onSearch }: SearchProps) => {
   const { theme } = useTheme();
+  const t = useTranslations('Search');
 
   const [term, setTerm] = useLocalStorageSearchTerm();
 
@@ -29,11 +31,11 @@ export const Search = ({ onSearch }: SearchProps) => {
       <input
         className={styles.input}
         value={term}
-        placeholder="Enter character name"
+        placeholder={t('placeholder')}
         onChange={handleTermChange}
       />
       <button className={styles.button} onClick={handleClickSearch}>
-        Search
+        {t('buttonText')}
       </button>
     </div>
   );

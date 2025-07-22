@@ -3,10 +3,12 @@
 import styles from './About.module.scss';
 import { useTheme } from '../../shared/hooks/useTheme';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function About() {
   const { theme } = useTheme();
   const router = useRouter();
+  const t = useTranslations('About');
 
   const handleGoBack = () => {
     router.back();
@@ -16,29 +18,22 @@ export default function About() {
     <main className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.wrapper}>
         <div className={styles.titleContainer}>
+          <div className={styles.title}>{t('firstTextTitle')}</div>
+          <div className={styles.title}>{t('secondTextTitle')}</div>
           <div className={styles.title}>
-            This project was developed as part of the React 2025 Q3 course by a
-            goal-oriented and responsible Front-end developer with a fast
-            learning pace and high motivation for development.
-          </div>
-          <div className={styles.title}>
-            You can find out more information about the author by following the
-            github link below.
-          </div>
-          <div className={styles.title}>
-            If you want to see the course program, follow this{' '}
+            {t('linkTitle')}{' '}
             <a
               className={styles.link}
               href="https://rs.school/courses/reactjs"
               target="_blank"
               rel="noreferrer noopener"
             >
-              link.
+              {t('linkText')}
             </a>
           </div>
         </div>
         <button className={styles.button} onClick={handleGoBack}>
-          Go Back
+          {t('buttonText')}
         </button>
       </div>
     </main>

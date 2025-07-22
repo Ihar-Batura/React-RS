@@ -3,6 +3,7 @@
 import styles from './CharacterDetails.module.scss';
 import { Character } from '../../../shared/types/types';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import { useTranslations } from 'next-intl';
 
 interface CharacterDetailsProps {
   character: Character | null;
@@ -10,19 +11,18 @@ interface CharacterDetailsProps {
 
 export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
   const { theme } = useTheme();
+  const t = useTranslations('CharacterDetails');
 
   if (!character)
     return (
-      <p className={`${styles.title} ${styles[theme]}`}>
-        Character information with this UID not found!
-      </p>
+      <p className={`${styles.title} ${styles[theme]}`}>{t('notFoundText')}</p>
     );
 
   return (
     <div className={`${styles.container} ${styles[theme]}`} role="container">
-      <h2 className={styles.title}>Character Information:</h2>
+      <h2 className={styles.title}>{t('title')}</h2>
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Performers:</h3>
+        <h3 className={styles.littleTitle}>{t('titlePerformers')}</h3>
         {character.performers?.length ? (
           <ul className={styles.description}>
             {character.performers.map((performer) => (
@@ -30,14 +30,12 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>
-            No performer information available.
-          </p>
+          <p className={styles.description}>{t('notFoundPerformersText')}</p>
         )}
       </section>
 
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Episodes:</h3>
+        <h3 className={styles.littleTitle}>{t('titleEpisodes')}</h3>
         {character.episodes?.length ? (
           <ul className={styles.description}>
             {character.episodes.map((episode) => (
@@ -48,42 +46,43 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>
-            This character does not appear in any episodes.
-          </p>
+          <p className={styles.description}>{t('notFoundEpisodesText')}</p>
         )}
       </section>
 
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Movies:</h3>
+        <h3 className={styles.littleTitle}>{t('titleMovies')}</h3>
         {character.movies?.length ? (
           <ul className={styles.description}>
             {character.movies.map((movie) => (
               <li key={movie.uid} className={styles.movieItem}>
                 <strong>{movie.title}</strong> ({movie.yearFrom})
                 {movie.mainDirector && (
-                  <p>Director: {movie.mainDirector.name}</p>
+                  <p>
+                    {t('moviesDirectorTitle')} {movie.mainDirector.name}
+                  </p>
                 )}
                 {movie.stardateFrom && movie.stardateTo && (
                   <p>
-                    Start dates: {movie.stardateFrom}–{movie.stardateTo}
+                    {t('moviesDirectorStart')} {movie.stardateFrom}–
+                    {movie.stardateTo}
                   </p>
                 )}
                 {movie.usReleaseDate && (
-                  <p>US Release Date: {movie.usReleaseDate}</p>
+                  <p>
+                    {t('moviesDirectorRelease')} {movie.usReleaseDate}
+                  </p>
                 )}
               </li>
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>
-            This character does not appear in any movies.
-          </p>
+          <p className={styles.description}>{t('notFoundMoviesText')}</p>
         )}
       </section>
 
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Occupations:</h3>
+        <h3 className={styles.littleTitle}>{t('titleOccupations')}</h3>
         {character.occupations?.length ? (
           <ul className={styles.description}>
             {character.occupations.map((occupation) => (
@@ -91,12 +90,12 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>No occupations found.</p>
+          <p className={styles.description}>{t('notFoundOccupationsText')}</p>
         )}
       </section>
 
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Species:</h3>
+        <h3 className={styles.littleTitle}>{t('titleSpecies')}</h3>
         {character.characterSpecies?.length ? (
           <ul className={styles.description}>
             {character.characterSpecies.map((species) => (
@@ -109,14 +108,12 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>
-            No species information available.
-          </p>
+          <p className={styles.description}>{t('notFoundSpeciesText')}</p>
         )}
       </section>
 
       <section className={styles.section} data-testid="character-section">
-        <h3 className={styles.littleTitle}>Organizations:</h3>
+        <h3 className={styles.littleTitle}>{t('titleOrganizations')}</h3>
         {character.organizations?.length ? (
           <ul className={styles.description}>
             {character.organizations.map((org) => (
@@ -126,9 +123,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
             ))}
           </ul>
         ) : (
-          <p className={styles.description}>
-            This character is not affiliated with any organizations.
-          </p>
+          <p className={styles.description}>{t('notFoundOrganizationsText')}</p>
         )}
       </section>
     </div>

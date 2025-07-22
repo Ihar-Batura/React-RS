@@ -5,6 +5,7 @@ import { CharactersResponse } from '../../../shared/types/types';
 import { Spinner } from '../../ui/spinner/Spinner';
 import { ResultItem } from '../../ui/result/ResultItem';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import { useTranslations } from 'next-intl';
 
 interface ResultsProps {
   data: CharactersResponse | null;
@@ -20,6 +21,7 @@ export const Results = ({
   onSelectCharacter,
 }: ResultsProps) => {
   const { theme } = useTheme();
+  const t = useTranslations('Results');
 
   if (isLoading) {
     return <Spinner />;
@@ -30,8 +32,8 @@ export const Results = ({
       {data?.characters.length ? (
         <>
           <div className={styles.titleContainer}>
-            <div className={styles.titleName}>Character:</div>
-            <div className={styles.titleDescription}>Description:</div>
+            <div className={styles.titleName}>{t('character')}:</div>
+            <div className={styles.titleDescription}>{t('description')}:</div>
           </div>
           <ul className={styles.characterList}>
             {data.characters.map((character) => (
@@ -45,9 +47,7 @@ export const Results = ({
         </>
       ) : (
         <p className={styles.message}>
-          {isError
-            ? 'Ooops! Error getting characters collection...'
-            : 'Nothing found!'}
+          {isError ? t('oopsText') : t('notFoundText')}
         </p>
       )}
     </div>

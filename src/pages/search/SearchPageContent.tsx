@@ -14,6 +14,7 @@ import { PopupChoseElements } from '../../components/ui/popup/PopupChoseElements
 import { useTheme } from '../../shared/hooks/useTheme';
 import { useGetCharacterByUidQuery } from '../../store/apiSlice';
 import { useSearchCharactersQuery } from '../../store/apiSlice';
+import { useTranslations } from 'next-intl';
 
 export default function SearchPageContent() {
   const { theme } = useTheme();
@@ -25,6 +26,7 @@ export default function SearchPageContent() {
   const params = new URLSearchParams(searchParams?.toString());
   const currentPage = Number(params.get('page')) || 1;
   const detailsUidFromUrl = params.get('details');
+  const t = useTranslations('SearchPageContent');
 
   const {
     data: searchResults,
@@ -108,7 +110,7 @@ export default function SearchPageContent() {
               className={styles.refreshButton}
               onClick={handleForceRefresh}
             >
-              Force Refresh
+              {t('buttonText')}
             </button>
           )}
         </div>
@@ -120,7 +122,7 @@ export default function SearchPageContent() {
             {detailsLoading ? (
               <Spinner />
             ) : detailsError ? (
-              <div>Error loading character details</div>
+              <div>{t('errorText')}</div>
             ) : (
               <CharacterDetails character={detailsData ?? null} />
             )}

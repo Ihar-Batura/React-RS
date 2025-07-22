@@ -1,8 +1,10 @@
 import styles from './Footer.module.scss';
 import { useTheme } from '../../../shared/hooks/useTheme';
+import { useTranslations } from 'next-intl';
 
 export const Footer = () => {
   const { theme } = useTheme();
+  const t = useTranslations('Footer');
 
   return (
     <footer className={`${styles.footer} ${styles[theme]}`}>
@@ -14,7 +16,7 @@ export const Footer = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          Ihar Batura
+          {t('author')}
         </a>
       </div>
     </footer>
