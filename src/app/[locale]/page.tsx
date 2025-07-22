@@ -1,14 +1,14 @@
 'use client';
 
 import { Header } from '../../components/layout/header/Header';
-import About from '../../pages/about/About';
 import { Footer } from '../../components/layout/footer/Footer';
+import SearchPageContent from '../../pages/search/SearchPageContent';
 
-export default function AboutPage() {
+export default function SearchPage() {
   return (
     <>
       <Header />
-      <About />
+      <SearchPageContent />
       <Footer />
     </>
   );
