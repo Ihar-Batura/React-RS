@@ -29,6 +29,13 @@
         $color: $primary-white,
       )  
     }
+
+    .refreshButton{
+      @include button(
+        $background-color: $primary-light-blue,
+        $color: $primary-white,
+      )  
+    }
   }
 }
 
@@ -68,6 +75,13 @@ background-color: $background-dark;
     $padding: 0,
     $color: $primary-white,
   )
+}
+
+.refreshButton{
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  @include button()
 }
 
 @media (width < 800px) {

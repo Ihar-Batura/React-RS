@@ -27,6 +27,7 @@ export const Search = ({ onSearch }: SearchProps) => {
       <input
         className={styles.input}
         value={term}
+        placeholder="Enter character name"
         onChange={handleTermChange}
       />
       <button className={styles.button} onClick={handleClickSearch}>
