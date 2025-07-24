@@ -1,7 +1,7 @@
-'use client';
+'use server';
 
 import About from '../../../components/pages/about/About';
 
-export default function AboutPage() {
+export default async function AboutPage() {
   return <About />;
 }

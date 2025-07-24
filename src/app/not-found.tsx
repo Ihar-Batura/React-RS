@@ -2,7 +2,7 @@
 
 import styles from '../assets/styles/NotFoundPage.module.scss';
 import ButtonGoHome from '../components/ui/buttons/go-home';
-import ButtonGoBack from '../components/ui/buttons/go-back';
+import ButtonGoBackForNotFound from '../components/ui/buttons/go-back-for-not-found';
 
 export default async function NotFoundPage() {
   return (
@@ -12,7 +12,7 @@ export default async function NotFoundPage() {
         <div className={styles.title}>This page doesn’t exist</div>
         <div className={styles.buttonsContainer}>
           <ButtonGoHome />
-          <ButtonGoBack />
+          <ButtonGoBackForNotFound />
         </div>
       </div>
     </main>

@@ -1,7 +1,7 @@
-'use client';
+'use server';
 
 import SearchPageContent from '../../components/pages/search/SearchPageContent';
 
-export default function SearchPage() {
+export default async function SearchPage() {
   return <SearchPageContent />;
 }
