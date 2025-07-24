@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './About.module.scss';
-import { useTheme } from '../../shared/hooks/useTheme';
+import { useTheme } from '../../../shared/hooks/useTheme';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';

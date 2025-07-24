@@ -2,18 +2,18 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './SearchPageContent.module.scss';
-import { Search } from '../../components/common/search/Search';
-import { Results } from '../../components/common/results/Results';
-import { useLocalStorageSearchTerm } from '../../shared/hooks/useLocalStorageSearchTerm';
-import { Pagination } from '../../components/common/pagination/Pagination';
-import { Spinner } from '../../components/ui/spinner/Spinner';
-import { CharacterDetails } from '../../components/ui/character/CharacterDetails';
+import { Search } from '../../../components/common/search/Search';
+import { Results } from '../../../components/common/results/Results';
+import { useLocalStorageSearchTerm } from '../../../shared/hooks/useLocalStorageSearchTerm';
+import { Pagination } from '../../../components/common/pagination/Pagination';
+import { Spinner } from '../../../components/ui/spinner/Spinner';
+import { CharacterDetails } from '../../../components/ui/character/CharacterDetails';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { PopupChoseElements } from '../../components/ui/popup/PopupChoseElements';
-import { useTheme } from '../../shared/hooks/useTheme';
-import { useGetCharacterByUidQuery } from '../../store/apiSlice';
-import { useSearchCharactersQuery } from '../../store/apiSlice';
+import { RootState } from '../../../store/store';
+import { PopupChoseElements } from '../../../components/ui/popup/PopupChoseElements';
+import { useTheme } from '../../../shared/hooks/useTheme';
+import { useGetCharacterByUidQuery } from '../../../store/apiSlice';
+import { useSearchCharactersQuery } from '../../../store/apiSlice';
 import { useTranslations } from 'next-intl';
 
 export default function SearchPageContent() {
