@@ -4,6 +4,7 @@ import styles from './About.module.scss';
 import { useTheme } from '../../shared/hooks/useTheme';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function About() {
   const { theme } = useTheme();
@@ -22,14 +23,14 @@ export default function About() {
           <div className={styles.title}>{t('secondTextTitle')}</div>
           <div className={styles.title}>
             {t('linkTitle')}{' '}
-            <a
+            <Link
               className={styles.link}
               href="https://rs.school/courses/reactjs"
               target="_blank"
               rel="noreferrer noopener"
             >
               {t('linkText')}
-            </a>
+            </Link>
           </div>
         </div>
         <button className={styles.button} onClick={handleGoBack}>
