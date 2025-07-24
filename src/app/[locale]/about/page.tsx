@@ -1,15 +1,7 @@
 'use client';
 
-import { Header } from '../../../components/layout/header/Header';
-import About from '../../../pages/about/About';
-import { Footer } from '../../../components/layout/footer/Footer';
+import About from '../../../components/pages/about/About';
 
 export default function AboutPage() {
-  return (
-    <>
-      <Header />
-      <About />
-      <Footer />
-    </>
-  );
+  return <About />;
 }
