@@ -1,10 +1,14 @@
-'use client';
-
 import './[locale]/globals.scss';
-import { ThemeProvider } from '../context/ThemeProvider';
+import type { Metadata } from 'next';
 
-import { Provider } from 'react-redux';
-import { store } from '../store/store';
+// eslint-disable-next-line react-refresh/only-export-components
+export const metadata: Metadata = {
+  title: 'Star Trek',
+  description: 'GStar Trek application',
+  icons: {
+    icon: { url: '/star-trek-logo.svg', rel: 'icon' },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -13,17 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <title>Star Trek</title>
-        <meta name="description" content="Star Trek application" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/star-trek-logo.svg" />
-      </head>
-      <body>
-        <Provider store={store}>
-          <ThemeProvider>{children}</ThemeProvider>
-        </Provider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
