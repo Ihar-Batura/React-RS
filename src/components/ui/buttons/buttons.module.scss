@@ -1,0 +1,17 @@
+@use '../../../assets/styles/globals' as *;
+
+.button {
+  @include button(
+    $width: 200px,
+  )
+}
+
+.button {
+  &[data-theme="light"] {
+    @include button(
+      $width: 200px,
+      $color: $primary-white,
+      $background-color: $primary-light-blue
+    );
+  }
+}
