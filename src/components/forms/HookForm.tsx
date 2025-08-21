@@ -9,6 +9,8 @@ import type { RootState } from '../../store/store';
 import { setSelectedCountry } from '../../store/slices/countriesSlice';
 import { addFormData } from '../../store/slices/formSlice';
 
+type PasswordStrength = 'weak' | 'fair' | 'good' | 'strong';
+
 const schema: yup.ObjectSchema<FormInput> = yup.object().shape({
   name: yup
     .string()
@@ -97,7 +99,24 @@ export const HookForm = () => {
     },
   });
 
+  const password = watch('password');
   const countryWatch = watch('country');
+
+  const getPasswordStrength = (password: string): PasswordStrength => {
+    if (!password) return 'weak';
+
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+
+    if (score <= 2) return 'weak';
+    if (score === 3) return 'fair';
+    if (score === 4) return 'good';
+    return 'strong';
+  };
 
   const handleCountrySelect = (country: string) => {
     setValue('country', country);
@@ -219,6 +238,12 @@ export const HookForm = () => {
         />
         {errors.password && (
           <p className={styles.error}>{errors.password.message}</p>
+        )}
+        {password && (
+          <p className={styles.passwordStrength}>
+            Password strength:
+            {' ' + getPasswordStrength(password)}
+          </p>
         )}
       </div>
 
