@@ -3,6 +3,10 @@ import { useForm } from 'react-hook-form';
 import type { FormInput } from '../../types/types';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import type { RootState } from '../../store/store';
+import { setSelectedCountry } from '../../store/slices/countriesSlice';
 
 const schema: yup.ObjectSchema<FormInput> = yup.object().shape({
   name: yup
@@ -69,14 +73,53 @@ const schema: yup.ObjectSchema<FormInput> = yup.object().shape({
 }) as yup.ObjectSchema<FormInput>;
 
 export const HookForm = () => {
+  const dispatch = useDispatch();
+  const { list: countries, selected: selectedCountry } = useSelector(
+    (state: RootState) => state.countries
+  );
+
+  const [filteredCountries, setFilteredCountries] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState('');
+
   const {
     handleSubmit,
     register,
+    setValue,
+    watch,
     formState: { errors, isValid, isDirty },
   } = useForm<FormInput>({
     resolver: yupResolver(schema),
     mode: 'onChange',
+    defaultValues: {
+      country: selectedCountry,
+    },
   });
+
+  const countryWatch = watch('country');
+
+  const handleCountrySelect = (country: string) => {
+    setValue('country', country);
+    setInputValue(country);
+    dispatch(setSelectedCountry(country));
+  };
+
+  useEffect(() => {
+    if (inputValue) {
+      setFilteredCountries(
+        countries.filter((c) =>
+          c.toLowerCase().includes(inputValue.toLowerCase())
+        )
+      );
+    } else {
+      setFilteredCountries([]);
+    }
+  }, [inputValue, countries]);
+
+  useEffect(() => {
+    if (countryWatch && countryWatch !== inputValue) {
+      setInputValue(countryWatch);
+    }
+  }, [countryWatch, inputValue]);
 
   const onSubmit = (data: FormInput) => {
     console.log(data);
@@ -200,6 +243,19 @@ export const HookForm = () => {
           className={styles.input}
           placeholder="Start typing to select country"
         />
+        {filteredCountries.length > 0 && (
+          <ul className={styles.suggestions}>
+            {filteredCountries.map((country) => (
+              <li
+                key={country}
+                onClick={() => handleCountrySelect(country)}
+                className={styles.suggestionItem}
+              >
+                {country}
+              </li>
+            ))}
+          </ul>
+        )}
         {errors.country && (
           <p className={styles.error}>{errors.country.message}</p>
         )}
