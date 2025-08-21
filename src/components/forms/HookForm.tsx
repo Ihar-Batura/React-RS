@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import type { RootState } from '../../store/store';
 import { setSelectedCountry } from '../../store/slices/countriesSlice';
+import { addFormData } from '../../store/slices/formSlice';
 
 const schema: yup.ObjectSchema<FormInput> = yup.object().shape({
   name: yup
@@ -92,6 +93,7 @@ export const HookForm = () => {
     mode: 'onChange',
     defaultValues: {
       country: selectedCountry,
+      profilePicture: null,
     },
   });
 
@@ -121,8 +123,39 @@ export const HookForm = () => {
     }
   }, [countryWatch, inputValue]);
 
-  const onSubmit = (data: FormInput) => {
-    console.log(data);
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const onSubmit = async (data: FormInput) => {
+    const file = data.profilePicture?.[0];
+    if (!file) return;
+
+    try {
+      const base64String = await convertToBase64(file);
+
+      dispatch(
+        addFormData({
+          name: data.name,
+          age: data.age,
+          email: data.email,
+          password: data.password,
+          gender: data.gender,
+          country: data.country,
+          profilePicture: base64String,
+          acceptedTerms: data.acceptedTerms,
+        })
+      );
+      console.log(data);
+      console.log('base64String', base64String);
+    } catch (error) {
+      console.error('Error converting file to base64:', error);
+    }
   };
 
   const isSubmitDisabled = !isValid || !isDirty;
