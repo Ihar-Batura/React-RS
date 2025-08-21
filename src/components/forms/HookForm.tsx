@@ -11,7 +11,11 @@ import type { PasswordStrength } from '../../types/types';
 import { schema } from '../../utils/schema';
 import { convertToBase64 } from '../../utils/convert-file-to-base64';
 
-export const HookForm = () => {
+type HookFormProps = {
+  onClose: () => void;
+};
+
+export const HookForm = ({ onClose }: HookFormProps) => {
   const dispatch = useDispatch();
   const { list: countries, selected: selectedCountry } = useSelector(
     (state: RootState) => state.countries
@@ -99,6 +103,7 @@ export const HookForm = () => {
       );
       console.log(data);
       console.log('base64String', base64String);
+      onClose();
     } catch (error) {
       console.error('Error converting file to base64:', error);
     }

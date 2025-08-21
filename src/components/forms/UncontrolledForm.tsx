@@ -9,7 +9,11 @@ import type { PasswordStrength } from '../../types/types';
 import { schema } from '../../utils/schema';
 import { convertToBase64 } from '../../utils/convert-file-to-base64';
 
-export const UncontrolledForm = () => {
+type UncontrolledFormProps = {
+  onClose: () => void;
+};
+
+export const UncontrolledForm = ({ onClose }: UncontrolledFormProps) => {
   const dispatch = useDispatch();
   const { list: countries } = useSelector(
     (state: RootState) => state.countries
@@ -111,6 +115,10 @@ export const UncontrolledForm = () => {
           acceptedTerms: formData.acceptedTerms,
         })
       );
+      console.log(formData);
+      console.log('base64String', base64String);
+
+      onClose();
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const formErrors: Record<string, string> = {};

@@ -2,6 +2,7 @@ import styles from './Header.module.css';
 import { useState } from 'react';
 import { Modal } from '../../modal/Modal';
 import { HookForm } from '../../forms/HookForm';
+import { UncontrolledForm } from '../../forms/UncontrolledForm';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,11 @@ export const Header = () => {
           setIsOpen(false);
         }}
       >
-        {isOpenHookForm ? <HookForm /> : <div>Form 111</div>}
+        {isOpenHookForm ? (
+          <HookForm onClose={() => setIsOpen(false)} />
+        ) : (
+          <UncontrolledForm onClose={() => setIsOpen(false)} />
+        )}
       </Modal>
     </header>
   );
