@@ -1,11 +1,20 @@
-export interface FormData {
+type Gender = 'male' | 'female';
+
+interface BaseFormFields {
   name: string;
   age: number;
   email: string;
   password: string;
-  confirmPassword: string;
-  gender: 'male' | 'female';
+  gender: Gender;
   acceptedTerms: boolean;
-  profilePicture: string;
   country: string;
+}
+
+export interface FormInput extends BaseFormFields {
+  confirmPassword: string;
+  profilePicture: FileList | null;
+}
+
+export interface FormValues extends BaseFormFields {
+  profilePicture: string;
 }
