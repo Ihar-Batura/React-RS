@@ -18,3 +18,5 @@ export interface FormInput extends BaseFormFields {
 export interface FormValues extends BaseFormFields {
   profilePicture: string;
 }
+
+export type PasswordStrength = 'weak' | 'fair' | 'good' | 'strong';
