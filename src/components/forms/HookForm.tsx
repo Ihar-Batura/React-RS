@@ -268,14 +268,12 @@ export const HookForm = ({ onClose }: HookFormProps) => {
       </div>
 
       <div className={`${styles.container} ${styles.containerTerms}`}>
-        <label className={styles.label}>
-          <input
-            type="checkbox"
-            {...register('acceptedTerms')}
-            className={styles.input}
-          />
-          I accept the Terms and Conditions
-        </label>
+        <input
+          type="checkbox"
+          {...register('acceptedTerms')}
+          className={styles.inputCheckbox}
+        />
+        I accept the Terms and Conditions
         {errors.acceptedTerms && (
           <p className={styles.error}>{errors.acceptedTerms.message}</p>
         )}

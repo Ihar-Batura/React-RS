@@ -295,15 +295,13 @@ export const UncontrolledForm = ({ onClose }: UncontrolledFormProps) => {
       </div>
 
       <div className={`${styles.container} ${styles.containerTerms}`}>
-        <label className={styles.label}>
-          <input
-            type="checkbox"
-            name="acceptedTerms"
-            ref={acceptedTermsRef}
-            className={styles.input}
-          />
-          I accept the Terms and Conditions
-        </label>
+        <input
+          type="checkbox"
+          name="acceptedTerms"
+          ref={acceptedTermsRef}
+          className={styles.inputCheckbox}
+        />
+        I accept the Terms and Conditions
         {errors.acceptedTerms && (
           <p className={styles.error}>{errors.acceptedTerms}</p>
         )}
