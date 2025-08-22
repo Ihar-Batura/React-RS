@@ -29,6 +29,15 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     };
   }, [isOpen, handleKeyDown]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const firstInput = document.getElementById('name');
+      if (firstInput) {
+        firstInput.focus();
+      }
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return createPortal(
