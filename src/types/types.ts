@@ -1,4 +1,4 @@
-type Gender = 'male' | 'female';
+export type Gender = 'male' | 'female';
 
 interface BaseFormFields {
   name: string;
