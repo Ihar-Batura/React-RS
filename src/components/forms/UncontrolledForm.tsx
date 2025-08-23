@@ -115,8 +115,6 @@ export const UncontrolledForm = ({ onClose }: UncontrolledFormProps) => {
           acceptedTerms: formData.acceptedTerms,
         })
       );
-      console.log(formData);
-      console.log('base64String', base64String);
 
       onClose();
     } catch (err) {

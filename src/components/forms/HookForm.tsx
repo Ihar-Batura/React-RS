@@ -101,8 +101,6 @@ export const HookForm = ({ onClose }: HookFormProps) => {
           acceptedTerms: data.acceptedTerms,
         })
       );
-      console.log(data);
-      console.log('base64String', base64String);
       onClose();
     } catch (error) {
       console.error('Error converting file to base64:', error);
