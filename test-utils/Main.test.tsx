@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 import type { FormValues } from '../src/types/types';
 import type { Gender } from '../src/types/types';
 
-vi.mock('../../public/placeholder.png', () => 'mock-placeholder.png');
-
 vi.mock('react-redux', () => ({
   useSelector: vi.fn(),
 }));
