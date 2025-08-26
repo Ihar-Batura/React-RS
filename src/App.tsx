@@ -1,10 +1,13 @@
 import './App.css';
+import { Suspense } from 'react';
+import { Spinner } from './components/ui/spinner/Spinner';
+import { Table } from './components/table/Table';
 
 function App() {
   return (
-    <>
-      <div>performance app</div>
-    </>
+    <Suspense fallback={<Spinner />}>
+      <Table />
+    </Suspense>
   );
 }
 
