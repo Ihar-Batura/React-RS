@@ -59,3 +59,12 @@ export interface CO2Data {
   total_ghg?: number;
   total_ghg_excluding_lucf?: number;
 }
+
+export interface CountryData {
+  iso_code?: string;
+  data: CO2Data[];
+}
+
+export interface Data {
+  [country: string]: CountryData;
+}
