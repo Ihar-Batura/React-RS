@@ -1,8 +1,10 @@
 .container {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
   padding: 20px 10px;
-  background-color: rgb(100, 242, 199);
+  background-color: #b6e9da;
 }
 
 .searchPanelItem {
@@ -23,4 +25,5 @@ font-size: 18px;
 .select {
   font-size: 20px;
   padding: 5px 7px;
+  cursor: pointer;
 }
