@@ -1,5 +1,5 @@
 import styles from './Main.module.css';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import type { CountryData } from '../../types/types';
 import { useDataLoader } from '../../hooks/useDataLoader';
 import { Table } from '../table/Table';
@@ -18,6 +18,18 @@ export const Main = () => {
   const [searchYear, setSearchYear] = useState<number>(2023);
   const [sortOption, setSortOption] = useState<SortOption>('name_asc');
   const [availableYears, setAvailableYears] = useState<number[]>([]);
+
+  const handleSearchCountry = useCallback((value: string) => {
+    setSearchCountry(value);
+  }, []);
+
+  const handleSearchYear = useCallback((value: number) => {
+    setSearchYear(value);
+  }, []);
+
+  const handleSortOption = useCallback((value: SortOption) => {
+    setSortOption(value);
+  }, []);
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
@@ -72,11 +84,11 @@ export const Main = () => {
       <div className={styles.wrapper}>
         <SearchPanel
           searchCountry={searchCountry}
-          setSearchCountry={setSearchCountry}
+          setSearchCountry={handleSearchCountry}
           searchYear={searchYear}
-          setSearchYear={setSearchYear}
+          setSearchYear={handleSearchYear}
           sortOption={sortOption}
-          setSortOption={setSortOption}
+          setSortOption={handleSortOption}
           availableYears={availableYears}
         />
         <Table data={filteredAndSortedData} selectedYear={searchYear} />
