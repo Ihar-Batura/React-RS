@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px 10px;
+  background-color: #b6e9da;
+}
+
+.searchPanelItem {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.label {
+font-size: 18px;
+}
+
+.searchInput {
+  font-size: 20px;
+  padding: 5px 7px;
+}
+
+.select {
+  font-size: 20px;
+  padding: 5px 7px;
+  cursor: pointer;
+}
