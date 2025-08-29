@@ -3,6 +3,12 @@ import { useState, useMemo, useCallback } from 'react';
 import type { Data, CO2Data } from '../../types/types';
 import { ColumnSelector } from './ColumnSelector';
 import { TableHead } from './TableHead';
+import { CellIso } from './cells/CellIso';
+import { CellCountry } from './cells/CellCountry';
+import { CellYear } from './cells/CellYear';
+import { CellPopulation } from './cells/CellPopulation';
+import { CellCo2 } from './cells/CellCo2';
+import { CellCo2PerCapita } from './cells/CellCo2PerCapita';
 
 interface TableProps {
   data: Data;
@@ -57,20 +63,17 @@ export const Table = ({ data, selectedYear }: TableProps) => {
         <tbody>
           {tableData.map((allCountryData) => (
             <tr key={allCountryData.country} className={styles.tableRow}>
-              <td className={styles.tableRowCell}>
-                {allCountryData.iso || 'N/A'}
-              </td>
-              <td className={styles.tableRowCell}>{allCountryData.country}</td>
-              <td className={styles.tableRowCell}>{allCountryData.year}</td>
-              <td className={styles.tableRowCell}>
-                {formatValue(allCountryData.population, true)}
-              </td>
-              <td className={styles.tableRowCell}>
-                {formatValue(allCountryData.co2)}
-              </td>
-              <td className={styles.tableRowCell}>
-                {formatValue(allCountryData.co2_per_capita)}
-              </td>
+              <CellIso iso={allCountryData.iso || 'N/A'} />
+              <CellCountry countryName={allCountryData.country} />
+              <CellYear year={allCountryData.year} />
+              <CellPopulation
+                population={formatValue(allCountryData.population, true)}
+              />
+              <CellCo2 co2={formatValue(allCountryData.co2)} />
+              <CellCo2PerCapita
+                co2PerCapita={formatValue(allCountryData.co2_per_capita)}
+              />
+
               {visibleColumns.map((key) => (
                 <td key={key} className={styles.tableRowCell}>
                   {formatValue(allCountryData.details?.[key as keyof CO2Data])}
