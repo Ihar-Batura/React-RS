@@ -1,0 +1,88 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 700px;
+  padding: 40px 20px;
+  border-radius: 6px;
+  background-color: rgb(119, 239, 239);
+}
+
+.title {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 3px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  font-size: 18px;
+  padding: 2px 6px;
+}
+
+.inputCheckbox {
+  width: 20px;
+  height: 20px;
+}
+
+.radioContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.containerTerms {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: end;
+  gap: 5px;
+}
+
+.suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 4px;
+  background: white;
+}
+
+.suggestionItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.suggestionItem:hover {
+  background-color: #f0f0f0;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.button {
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  padding: 12px 18px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
